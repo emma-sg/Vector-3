@@ -10,16 +10,15 @@
 
 <body>
     <button id="start">Start game</button>
-    <div>
+    <div class="form">
         <label for="1">Player 1</label>
-        <input type="radio" name="1" data-value="0">2 Acceleration, 2 Laser</input>
-        <input type="radio" name="1" data-value="1">1 Acceleration, 3 Laser</input>
+        <button name="1" disabled="false">2 Acceleration, 2 Laser</button>
+        <button name="2" disabled="false">1 Acceleration, 3 Laser</button>
+        <br/><br/>
+        <label for="3">Player 2</label>
+        <button name="3" disabled="false">2 Acceleration, 2 Laser</button>
+        <button name="4" disabled="false">1 Acceleration, 3 Laser</button>
         <br/>
-        <label for="2">Player 2</label>
-        <input type="radio" name="2">2 Acceleration, 2 Laser</input>
-        <input type="radio" name="2">1 Acceleration, 3 Laser</input>
-        <br/>
-        <button id="submit">Submit</button>
     </div>
 
     <button id="end" style="display:none;">End game</button>

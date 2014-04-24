@@ -28,11 +28,34 @@ $(document).ready(function() {
 
 
 
-
-	$('#submit').click(function(event) {
-		accelLevel[0]=$('input:button')
+	$('button').removeAttr('disabled').trigger('change');
+	$('button[name="1"]').click(function() {
+		accelLevel[0]=2;
+		laserLevel[0]=2;
+		$('button[name="1"]').attr('disabled', 'disabled');
+		$('button[name="2"]').attr('disabled', 'disabled');
 	});
-
+	$('button[name="2"]').click(function() {
+		accelLevel[0]=1;
+		laserLevel[0]=3;
+		$('button[name="1"]').attr('disabled', 'disabled');
+		$('button[name="2"]').attr('disabled', 'disabled');
+	});
+	$('button[name="3"]').click(function() {
+		accelLevel[1]=2;
+		laserLevel[1]=2;
+		$('button[name="3"]').attr('disabled', 'disabled');
+		$('button[name="4"]').attr('disabled', 'disabled');
+	});
+	$('button[name="4"]').click(function() {
+		accelLevel[1]=1;
+		laserLevel[1]=3;
+		$('button[name="3"]').attr('disabled', 'disabled');
+		$('button[name="4"]').attr('disabled', 'disabled');
+	});
+	if (accelLevel[0] != 0 && accelLevel[1] != 0) {
+		$('.form').remove();
+	}
 
 
 
