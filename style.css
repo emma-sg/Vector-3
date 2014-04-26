@@ -1,0 +1,27 @@
+table {
+	width:100%;
+}
+.clearfix button {
+	float: left;
+}
+.clearfix h6 {
+	padding: 16px 32px 17px 32px;
+	margin: 0;
+	display: inline-block;
+}
+.small-block-grid-2 {
+	margin-top: 30px;
+}
+select, select option {
+	font-family: 'Titillium Web', 'sans-serif';
+	padding:5px;
+	width: 100%;
+	margin: 0;
+	border: none;
+	background: rgba(0,0,0,0.2);
+	-webkit-transition:all 0.2s ease;
+	transition:all 0.2s ease;
+}
+select:hover, select option:hover {
+	background: rgba(255,255,255,1);
+}

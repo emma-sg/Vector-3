@@ -18,7 +18,8 @@ var gt = 2;
 var ut = 1;
 var m = 0.5;
 
-var costlinesss = 16;
+var sixCost = 18;
+var nineCost = 36;
 
 var buttonsClicked = 0;
 
@@ -35,7 +36,7 @@ $(document).ready(function() {
 
 
 
-    $('button').removeAttr('disabled').trigger('change');
+    $('*').removeAttr('disabled').trigger('change');
     $('button[name="1"]').click(function() {
         accelLevel[0] = 2;
         laserLevel[0] = 2;
@@ -71,11 +72,52 @@ $(document).ready(function() {
 
 
     $('.six-pod select').change(function(event) {
-        var values = $('.six-pod select option:selected');
-        costlinesss = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
-        costlinesss = costlinesss + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
+        var sixvalues = $('.six-pod select option:selected');
+        sixCost = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
+        sixCost = sixCost + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
+        $('.six-pod-cost').text(sixCost + ' Ship Points');
+    });
 
+    $('.nine-pod select').change(function(event) {
+        var ninevalues = $('.nine-pod select option:selected');
+        nineCost = 32 + parseFloat($('.nine-pod select option:selected').eq(0).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(1).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(2).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(3).attr('data-cost'));
+        $('.nine-pod-cost').text(nineCost + ' Ship Points');
+    });
+    $('body').keydown(function() {
+        if (sixCost > ShipPoints[0]) {
+            $('#six-pod-select').attr('disabled', 'disabled');
+        } else {
+            $('#six-pod-select').removeAttr('disabled');
+        }
+        if (nineCost > ShipPoints[0]) {
+            $('#nine-pod-select').attr('disabled', 'disabled');
+        } else {
+            $('#nine-pod-select').removeAttr('disabled');
+        }
+    });
+    $('body').click(function() {
+        if (sixCost > ShipPoints[0]) {
+            $('#six-pod-select').attr('disabled', 'disabled');
+        } else {
+            $('#six-pod-select').removeAttr('disabled');
+        }
+        if (nineCost > ShipPoints[0]) {
+            $('#nine-pod-select').attr('disabled', 'disabled');
+        } else {
+            $('#nine-pod-select').removeAttr('disabled');
+        }
+    });
 
+    $('#six-pod-select').click(function(event) {
+        ShipPoints[0] -= sixCost;
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);
+    });
+    $('#nine-pod-select').click(function(event) {
+        ShipPoints[0] -= nineCost;
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);
     });
 
 
@@ -98,7 +140,7 @@ var removeFirstThing = function() {
     if (buttonsClicked == 2) {
         $('.inittech').css('display', 'none');
         $('.initships1').css('display', 'inherit');
-        $('#sp1').append('Ship Points: ' + ShipPoints[0]);
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);
 
     }
 };
