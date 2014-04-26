@@ -2,27 +2,151 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="script.js"></script>
     <meta charset="utf-8">
     <title>V3</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
 </head>
 
 <body>
     <button id="start">Start game</button>
-    <div class="form">
+    <div class="inittech">
         <label for="1">Player 1</label>
         <button name="1" disabled="false">2 Acceleration, 2 Laser</button>
         <button name="2" disabled="false">1 Acceleration, 3 Laser</button>
-        <br/><br/>
+        <br/>
+        <br/>
         <label for="3">Player 2</label>
         <button name="3" disabled="false">2 Acceleration, 2 Laser</button>
         <button name="4" disabled="false">1 Acceleration, 3 Laser</button>
         <br/>
     </div>
+    <div class="initships1" style="display:none">
+        <h4>Player 1</h4>
+        <div id="sp1"></div>
+        <ul class="small-block-grid-2">
+            <li>
+                <h6>16
+                    <abbr title="Ship Points">SP</abbr>
+                </h6>
+                <button>Select</button>
+                <table class="six-pod">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo" data-cost="1">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin" data-cost="2">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser" data-cost="4">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo" data-cost="1">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin" data-cost="2">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser" data-cost="4">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cabin</td>
+                            <td>Cabin</td>
+                        </tr>
+                        <tr>
+                            <td>Cabin</td>
+                            <td>Cabin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <h6>32
+                    <abbr title="Ship Points">SP</abbr>
+                </h6>
+                <button>Select</button>
+                <table class="nine-pod">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo" data-cost="1">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin" data-cost="2">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser" data-cost="4">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                            <td>
+                                Cabin
+                            </td>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo" data-cost="1">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin" data-cost="2">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser" data-cost="4">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo" data-cost="1">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin" data-cost="2">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser" data-cost="4">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                            <td>Cabin</td>
+                            <td>
+                                <select>Select
+                                    <option value="Cargo">Cargo (1
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Cabin">Cabin (2
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                    <option value="Laser">Laser (4
+                                        <abbr title="Ship Points">SP</abbr>)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cabin</td>
+                            <td>Cabin</td>
+                            <td>Cabin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+
+
+
+    </div>
+
 
     <button id="end" style="display:none;">End game</button>
 
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
 </body>
 
 </html>
