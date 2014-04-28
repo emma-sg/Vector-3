@@ -15,8 +15,8 @@
 </head>
 
 <body>
-    <button id="start">Start game</button>
-    <div class="inittech centered">
+    <button id="start" style="display:none;">Start game</button>
+    <div class="inittech padded centered animated slide">
         <h5>Player 0</h5>
         <button name="1" disabled="false">2 Acceleration, 2 Laser</button>
         <button name="2" disabled="false">1 Acceleration, 3 Laser</button>
@@ -27,7 +27,7 @@
         <button name="4" disabled="false">1 Acceleration, 3 Laser</button>
         <br/>
     </div>
-    <div class="initships1 padded" style="display:none">
+    <div class="initships1 padded animated slide" style="left:100%;">
         <h4>Player 0</h4>
         <div id="sp1"></div>
         <ul class="small-block-grid-2">
@@ -135,6 +135,7 @@
         </ul>
         <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!">Done</button>
     </div>
+
 
 
     <button id="end" style="display:none;">End game</button>

@@ -41,7 +41,7 @@ var p0shipsval = 0; // The first dimension contains the separate ships (ie. [0] 
 
 
 $(document).ready(function() {
-    $('#start').css('display', 'none').click(function() { // Start off with the start button hidden. Start the 'click' event listener.
+    $('#start').click(function() { // Start off with the start button hidden. Start the 'click' event listener.
         $(this).css('display', 'none'); // Hide button when clicked
         $('#end').css('display', 'inherit'); // Show the End Game button
         $('#results').remove(); // Remove the Game Results (if they exist)
@@ -100,34 +100,10 @@ $(document).ready(function() {
 
     // ALWAYS check to see if the player can afford the ship(s). If not, disable the Purchase button.
     $('body').keydown(function() {
-        if (sixCost > ShipPoints[0]) {
-            $('#six-pod-select').attr('disabled', 'disabled');
-        } else {
-            $('#six-pod-select').removeAttr('disabled');
-        }
-        if (nineCost > ShipPoints[0]) {
-            $('#nine-pod-select').attr('disabled', 'disabled');
-        } else {
-            $('#nine-pod-select').removeAttr('disabled');
-        }
-        if (ShipPoints[0] < 48) {
-            $('#done0').removeClass('disabled');
-        }
+        CanBuyShips();
     });
     $('body').click(function() {
-        if (sixCost > ShipPoints[0]) {
-            $('#six-pod-select').attr('disabled', 'disabled');
-        } else {
-            $('#six-pod-select').removeAttr('disabled');
-        }
-        if (nineCost > ShipPoints[0]) {
-            $('#nine-pod-select').attr('disabled', 'disabled');
-        } else {
-            $('#nine-pod-select').removeAttr('disabled');
-        }
-        if (ShipPoints[0] < 48) {
-            $('#done0').removeClass('disabled');
-        }
+        CanBuyShips();
     });
 
     // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p0ships array to correspond to ship purchased.
@@ -163,12 +139,38 @@ $(document).ready(function() {
 });
 
 var removeFirstThing = function() {
-    if (buttonsClicked == 2) {                          // Check if two buttons have been pressed
-        setTimeout(function() {                         // Wait for a bit
-            $('.inittech').css('display', 'none');      // Hide them...
-            $('.initships1').css('display', 'inherit'); // And show the next dialog
+    if (buttonsClicked == 2) { // Check if two buttons have been pressed
+        setTimeout(function() { // Wait for a bit
+            $('.inittech').css({ // Then hide them...
+                'transform': 'translate(-200%, 0%)',
+                '-webkit-transform': 'translate(-200%, 0%)'
+            });
+            $('.initships1').css({ // And show the next dialog.
+                'transform': 'translate(-100%, 0%)',
+                '-webkit-transform': 'translate(-100%, 0%)'
+            });
             $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
         }, 500);
 
+    }
+};
+
+var CanBuyShips = function() {
+    if (sixCost > ShipPoints[0]) {
+        $('#six-pod-select').attr('disabled', 'disabled');
+        $('.six-pod').css('opacity', '0.6');
+    } else {
+        $('#six-pod-select').removeAttr('disabled');
+        $('.six-pod').css('opacity', '1');
+    }
+    if (nineCost > ShipPoints[0]) {
+        $('#nine-pod-select').attr('disabled', 'disabled');
+        $('.nine-pod').css('opacity', '0.6');
+    } else {
+        $('#nine-pod-select').removeAttr('disabled');
+        $('.nine-pod').css('opacity', '1');
+    }
+    if (ShipPoints[0] < 48) {
+        $('#done0').removeClass('disabled has-tip').removeAttr('data-tooltip');
     }
 };
