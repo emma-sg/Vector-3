@@ -47,38 +47,36 @@ $(document).ready(function() {
         $('#results').remove(); // Remove the Game Results (if they exist)
     });
 
-    $('*').removeAttr('disabled').trigger('change'); // Un-disable anything that shouldn't start disabled
-
     // These check to see when one of the buttons about starting tech levels is clicked. When it is, both it and the other button for that player are disabled.
     $('button[name="1"]').click(function() {
         accelLevel[0] = 2; // Set Acceleration tech level
         laserLevel[0] = 2; // Set Laser tech level
-        $('button[name="1"]').attr('disabled', 'disabled');
-        $('button[name="2"]').attr('disabled', 'disabled');
-        buttonsClicked++;  // Increment the counter
-        removeFirstThing();// A function that closes the dialog and opens the next one.
+        $('button[name="1"]').addClass('disabled');
+        $('button[name="2"]').addClass('secondary disabled');
+        buttonsClicked++; // Increment the counter
+        removeFirstThing(); // A function that closes the dialog and opens the next one.
     });
     $('button[name="2"]').click(function() {
         accelLevel[0] = 1; // Set Acceleration tech level
         laserLevel[0] = 3; // Set Laser tech level
-        $('button[name="1"]').attr('disabled', 'disabled');
-        $('button[name="2"]').attr('disabled', 'disabled');
+        $('button[name="1"]').addClass('secondary disabled');
+        $('button[name="2"]').addClass('disabled');
         buttonsClicked++;
         removeFirstThing();
     });
     $('button[name="3"]').click(function() {
         accelLevel[1] = 2; // Set Acceleration tech level
         laserLevel[1] = 2; // Set Laser tech level
-        $('button[name="3"]').attr('disabled', 'disabled');
-        $('button[name="4"]').attr('disabled', 'disabled');
+        $('button[name="3"]').addClass('disabled');
+        $('button[name="4"]').addClass('secondary disabled');
         buttonsClicked++;
         removeFirstThing();
     });
     $('button[name="4"]').click(function() {
         accelLevel[1] = 1; // Set Acceleration tech level
         laserLevel[1] = 3; // Set Laser tech level
-        $('button[name="3"]').attr('disabled', 'disabled');
-        $('button[name="4"]').attr('disabled', 'disabled');
+        $('button[name="3"]').addClass('secondary disabled');
+        $('button[name="4"]').addClass('disabled');
         buttonsClicked++;
         removeFirstThing();
     });
@@ -164,10 +162,12 @@ $(document).ready(function() {
 });
 
 var removeFirstThing = function() {
-    if (buttonsClicked == 2) {      // Check if two buttons have been pressed
-        $('.inittech').css('display', 'none');      // Hide them...
-        $('.initships1').css('display', 'inherit'); // And show the next dialog
-        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);  // Show the number of Ship Points.
+    if (buttonsClicked == 2) {                          // Check if two buttons have been pressed
+        setTimeout(function() {                         // Wait for a bit
+            $('.inittech').css('display', 'none');      // Hide them...
+            $('.initships1').css('display', 'inherit'); // And show the next dialog
+            $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
+        }, 500);
 
     }
 };

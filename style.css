@@ -25,3 +25,12 @@ select, select option {
 select:hover, select option:hover {
 	background: rgba(255,255,255,1);
 }
+
+.centered {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.padded {
+	padding: 1% 3%;
+}
