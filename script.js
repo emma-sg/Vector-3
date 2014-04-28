@@ -47,6 +47,7 @@ $(document).ready(function() {
         $('#results').remove(); // Remove the Game Results (if they exist)
     });
 
+    $('*').removeAttr('disabled').trigger('change'); // Un-disable anything that shouldn't start disabled
     // These check to see when one of the buttons about starting tech levels is clicked. When it is, both it and the other button for that player are disabled.
     $('button[name="1"]').click(function() {
         accelLevel[0] = 2; // Set Acceleration tech level
