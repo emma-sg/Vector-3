@@ -150,7 +150,7 @@ var removeFirstThing = function() {
                 '-webkit-transform': 'translate(-100%, 0%)'
             });
             $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
-        }, 500);
+        }, 250);
 
     }
 };
