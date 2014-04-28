@@ -2,7 +2,7 @@ table {
 	width:100%;
 	border:none;
 }
-.initships1 table tbody tr td, .initships1 table tr td {
+.initships0 table tbody tr td, .initships0 table tr td, .initships1 table tbody tr td, .initships1 table tr td {
 	height: 40px;
 	line-height: 40px;
 	background: #4CAFCF;

@@ -34,13 +34,17 @@ var nineCost = 36; // Minimum cost of a 9-pod ship
 
 var buttonsClicked = 0; // Count the number of buttons in the first screen when this == 2
 
-var p0ships = new Array() // Player 0's multidimensional array of ships.
+var p0ships = new Array(); // Player 0's multidimensional array of ships.
 var p0shipsval = 0; // The first dimension contains the separate ships (ie. [0] is the first ship, [1] is the second, etc.).
 // The second dimension contains the ship-specific variables: destroyed, position, acceleration, pods.
 // [ship][0] contains the pods. 1=Cargo, 2=Cabin, 4=Laser.
 
+var p1ships = new Array();
+var p1shipsval = 0;
+
 
 $(document).ready(function() {
+    $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]); // I don't know why it doesn't quite work without this, but it doesn't.
     $('#start').click(function() { // Start off with the start button hidden. Start the 'click' event listener.
         $(this).css('display', 'none'); // Hide button when clicked
         $('#end').css('display', 'inherit'); // Show the End Game button
@@ -83,19 +87,19 @@ $(document).ready(function() {
     });
 
     // When one of the select boxes is changed, calculate and update the cost of the ship.
-    $('.six-pod select').change(function(event) {
+    $('.initships0 .six-pod select').change(function(event) {
         var sixvalues = $('.six-pod select option:selected');
         sixCost = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
         sixCost = sixCost + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
-        $('.six-pod-cost').text(sixCost + ' Ship Points');
+        $('.initships0 .six-pod-cost').text(sixCost + ' Ship Points');
     });
-    $('.nine-pod select').change(function(event) {
-        var ninevalues = $('.nine-pod select option:selected');
-        nineCost = 32 + parseFloat($('.nine-pod select option:selected').eq(0).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(1).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(2).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.nine-pod select option:selected').eq(3).attr('data-cost'));
-        $('.nine-pod-cost').text(nineCost + ' Ship Points');
+    $('.initships0 .nine-pod select').change(function(event) {
+        var ninevalues = $('.initships0 .nine-pod select option:selected');
+        nineCost = 32 + parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost'));
+        $('.initships0 .nine-pod-cost').text(nineCost + ' Ship Points');
     });
 
     // ALWAYS check to see if the player can afford the ship(s). If not, disable the Purchase button.
@@ -107,21 +111,69 @@ $(document).ready(function() {
     });
 
     // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p0ships array to correspond to ship purchased.
-    $('#six-pod-select').click(function(event) {
+    $('.initships0 #six-pod-select').click(function(event) {
         ShipPoints[0] -= sixCost;
-        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);
+        $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
         p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.six-pod select option:selected:first').attr('data-cost')), parseFloat($('.six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships0 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
         p0shipsval++;
     });
-    $('#nine-pod-select').click(function(event) {
+    $('.initships0 #nine-pod-select').click(function(event) {
         ShipPoints[0] -= nineCost;
-        $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]);
+        $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
         p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
         p0shipsval++;
     });
 
+
+
+
+    // When one of the select boxes is changed, calculate and update the cost of the ship.
+    $('.initships1 .six-pod select').change(function(event) {
+        var sixvalues = $('.initships1 .six-pod select option:selected');
+        sixCost = 16 + parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost'));
+        sixCost = sixCost + parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost'));
+        $('.initships1 .six-pod-cost').text(sixCost + ' Ship Points');
+    });
+    $('.initships1 .nine-pod select').change(function(event) {
+        var ninevalues = $('.initships1 .nine-pod select option:selected');
+        nineCost = 32 + parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost'));
+        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost'));
+        $('.initships1 .nine-pod-cost').text(nineCost + ' Ship Points');
+    });
+
+
+    // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p1ships array to correspond to ship purchased.
+    $('.initships1 #six-pod-select').click(function(event) {
+        ShipPoints[1] -= sixCost;
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
+        p1ships[p1shipsval] = new Array();
+        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+        p1shipsval++;
+    });
+    $('.initships1 #nine-pod-select').click(function(event) {
+        ShipPoints[1] -= nineCost;
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
+        p1ships[p1shipsval] = new Array();
+        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+        p1shipsval++;
+    });
+
+
+
+    $('#done0').click(function(event) {
+        $('.initships0').css({ // Then hide them...
+            'transform': 'translate(-200%, 0%)',
+            '-webkit-transform': 'translate(-200%, 0%)'
+        });
+        $('.initships1').css({ // And show the next dialog.
+            'transform': 'translate(-100%, 0%)',
+            '-webkit-transform': 'translate(-100%, 0%)'
+        });
+    });
 
     // When the End Game button is pressed, show game results, hide End Game button, and show New Game button.
     $('#end').click(function() {
@@ -145,11 +197,11 @@ var removeFirstThing = function() {
                 'transform': 'translate(-200%, 0%)',
                 '-webkit-transform': 'translate(-200%, 0%)'
             });
-            $('.initships1').css({ // And show the next dialog.
+            $('.initships0').css({ // And show the next dialog.
                 'transform': 'translate(-100%, 0%)',
                 '-webkit-transform': 'translate(-100%, 0%)'
             });
-            $('#sp1').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
+            $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
         }, 250);
 
     }
@@ -157,20 +209,38 @@ var removeFirstThing = function() {
 
 var CanBuyShips = function() {
     if (sixCost > ShipPoints[0]) {
-        $('#six-pod-select').attr('disabled', 'disabled');
-        $('.six-pod').css('opacity', '0.6');
+        $('.initships0 #six-pod-select').attr('disabled', 'disabled');
+        $('.initships0 .six-pod').css('opacity', '0.6');
     } else {
-        $('#six-pod-select').removeAttr('disabled');
-        $('.six-pod').css('opacity', '1');
+        $('.initships0 #six-pod-select').removeAttr('disabled');
+        $('.initships0 .six-pod').css('opacity', '1');
     }
     if (nineCost > ShipPoints[0]) {
-        $('#nine-pod-select').attr('disabled', 'disabled');
-        $('.nine-pod').css('opacity', '0.6');
+        $('.initships0 #nine-pod-select').attr('disabled', 'disabled');
+        $('.initships0 .nine-pod').css('opacity', '0.6');
     } else {
-        $('#nine-pod-select').removeAttr('disabled');
-        $('.nine-pod').css('opacity', '1');
+        $('.initships0 #nine-pod-select').removeAttr('disabled');
+        $('.initships0 .nine-pod').css('opacity', '1');
     }
     if (ShipPoints[0] < 48) {
         $('#done0').removeClass('disabled has-tip').removeAttr('data-tooltip');
     }
+    if (sixCost > ShipPoints[1]) {
+        $('.initships1 #six-pod-select').attr('disabled', 'disabled');
+        $('.initships1 .six-pod').css('opacity', '0.6');
+    } else {
+        $('.initships1 #six-pod-select').removeAttr('disabled');
+        $('.initships1 .six-pod').css('opacity', '1');
+    }
+    if (nineCost > ShipPoints[1]) {
+        $('.initships1 #nine-pod-select').attr('disabled', 'disabled');
+        $('.initships1 .nine-pod').css('opacity', '0.6');
+    } else {
+        $('.initships1 #nine-pod-select').removeAttr('disabled');
+        $('.initships1 .nine-pod').css('opacity', '1');
+    }
+    if (ShipPoints[1] < 48) {
+        $('#done1').removeClass('disabled has-tip').removeAttr('data-tooltip');
+    }
+
 };
