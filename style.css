@@ -1,0 +1,61 @@
+table {
+	width:100%;
+	border:none;
+}
+.initships0 table tbody tr td, .initships0 table tr td, .initships1 table tbody tr td, .initships1 table tr td {
+	height: 40px;
+	line-height: 40px;
+	background: #4CAFCF;
+	width: 5%;
+}
+body {
+	overflow-x:hidden;
+}
+.clearfix button {
+	float: left;
+}
+.clearfix h6 {
+	padding: 16px 32px 17px 32px;
+	margin: 0;
+	display: inline-block;
+}
+.small-block-grid-2 {
+	margin-top: 30px;
+}
+select, select option {
+	font-family: 'Titillium Web', 'sans-serif';
+	padding:5px;
+	width: 100%;
+	margin: 0;
+	border: none;
+	background: #3196b7;
+	border:1px solid #000 collapse;
+	-webkit-transition:all 0.2s ease;
+	transition:all 0.2s ease;
+}
+select:hover, select option:hover, select:focus {
+	background: #008CBA;
+	border:1px solid #000 collapse;
+}
+
+.centered {
+	margin: 0 auto;
+	text-align: center;
+	width:100%;
+}
+
+.padded {
+	padding: 1% 3%;
+}
+.animated {
+	-webkit-transition:all 0.5s ease;
+	transition:all 0.5s ease;
+	-webkit-transform:translateZ(0px);
+	transform:translateZ(0px);
+}
+.slide {
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+}
