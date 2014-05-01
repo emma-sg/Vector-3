@@ -56,32 +56,32 @@ $(document).ready(function() {
     $('button[name="1"]').click(function() {
         accelLevel[0] = 2; // Set Acceleration tech level
         laserLevel[0] = 2; // Set Laser tech level
-        $('button[name="1"]').addClass('disabled');
-        $('button[name="2"]').addClass('secondary disabled');
+        $('button[name="1"]').attr('disabled', '');
+        $('button[name="2"]').attr('disabled', '').addClass('secondary');
         buttonsClicked++; // Increment the counter
         removeFirstThing(); // A function that closes the dialog and opens the next one.
     });
     $('button[name="2"]').click(function() {
         accelLevel[0] = 1; // Set Acceleration tech level
         laserLevel[0] = 3; // Set Laser tech level
-        $('button[name="1"]').addClass('secondary disabled');
-        $('button[name="2"]').addClass('disabled');
+        $('button[name="1"]').attr('disabled', '').addClass('secondary');
+        $('button[name="2"]').attr('disabled', '');
         buttonsClicked++;
         removeFirstThing();
     });
     $('button[name="3"]').click(function() {
         accelLevel[1] = 2; // Set Acceleration tech level
         laserLevel[1] = 2; // Set Laser tech level
-        $('button[name="3"]').addClass('disabled');
-        $('button[name="4"]').addClass('secondary disabled');
+        $('button[name="3"]').attr('disabled', '');
+        $('button[name="4"]').attr('disabled', '').addClass('secondary');
         buttonsClicked++;
         removeFirstThing();
     });
     $('button[name="4"]').click(function() {
         accelLevel[1] = 1; // Set Acceleration tech level
         laserLevel[1] = 3; // Set Laser tech level
-        $('button[name="3"]').addClass('secondary disabled');
-        $('button[name="4"]').addClass('disabled');
+        $('button[name="3"]').attr('disabled', '').addClass('secondary');
+        $('button[name="4"]').attr('disabled', '');
         buttonsClicked++;
         removeFirstThing();
     });
@@ -161,7 +161,6 @@ $(document).ready(function() {
         p1ships[p1shipsval][0] = [parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
         p1shipsval++;
     });
-
 
 
     $('#done0').click(function(event) {
