@@ -41,11 +41,14 @@ canvas { display: block }
   font-family: inherit;
 }
 
-.mathbox-label {
-  font-family: 'klavika-web', sans-serif;
+.mathbox-wrap {
+  /*font-family: 'klavika-web', sans-serif;*/
   font-weight: normal;
   font-style: normal;
-  text-shadow:
+  padding: 0 3px;
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 6px;
+/*  text-shadow:
     3px 0px 1px rgb(255, 255, 255),
     -3px 0px 1px rgb(255, 255, 255),
     0px -3px 1px rgb(255, 255, 255),
@@ -65,5 +68,5 @@ canvas { display: block }
     -1px -1px 1px rgb(255, 255, 255),
     -1px 1px 1px rgb(255, 255, 255),
     1px -1px 1px rgb(255, 255, 255),
-    1px 1px 1px rgb(255, 255, 255);
+    1px 1px 1px rgb(255, 255, 255);*/
 }
