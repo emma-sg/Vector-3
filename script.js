@@ -340,6 +340,7 @@ $(document).ready(function() {
 
                                     mathbox.vector({
                                         n: 2,
+                                        color: 0x007095,
                                         data: [
                                             [0, 0, 7],
                                             [10, 4, 10],
