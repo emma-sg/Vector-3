@@ -44,202 +44,385 @@ var p1shipsval = 0;
 
 
 $(document).ready(function() {
-    $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]); // I don't know why it doesn't quite work without this, but it doesn't.
-    $('#start').click(function() { // Start off with the start button hidden. Start the 'click' event listener.
-        $(this).css('display', 'none'); // Hide button when clicked
-        $('#end').css('display', 'inherit'); // Show the End Game button
-        $('#results').remove(); // Remove the Game Results (if they exist)
-    });
-
-    $('*').removeAttr('disabled').trigger('change'); // Un-disable anything that shouldn't start disabled
-    // These check to see when one of the buttons about starting tech levels is clicked. When it is, both it and the other button for that player are disabled.
-    $('button[name="1"]').click(function() {
-        accelLevel[0] = 2; // Set Acceleration tech level
-        laserLevel[0] = 2; // Set Laser tech level
-        $('button[name="1"]').attr('disabled', '');
-        $('button[name="2"]').attr('disabled', '').addClass('secondary');
-        buttonsClicked++; // Increment the counter
-        removeFirstThing(); // A function that closes the dialog and opens the next one.
-    });
-    $('button[name="2"]').click(function() {
-        accelLevel[0] = 1; // Set Acceleration tech level
-        laserLevel[0] = 3; // Set Laser tech level
-        $('button[name="1"]').attr('disabled', '').addClass('secondary');
-        $('button[name="2"]').attr('disabled', '');
-        buttonsClicked++;
-        removeFirstThing();
-    });
-    $('button[name="3"]').click(function() {
-        accelLevel[1] = 2; // Set Acceleration tech level
-        laserLevel[1] = 2; // Set Laser tech level
-        $('button[name="3"]').attr('disabled', '');
-        $('button[name="4"]').attr('disabled', '').addClass('secondary');
-        buttonsClicked++;
-        removeFirstThing();
-    });
-    $('button[name="4"]').click(function() {
-        accelLevel[1] = 1; // Set Acceleration tech level
-        laserLevel[1] = 3; // Set Laser tech level
-        $('button[name="3"]').attr('disabled', '').addClass('secondary');
-        $('button[name="4"]').attr('disabled', '');
-        buttonsClicked++;
-        removeFirstThing();
-    });
-
-    // When one of the select boxes is changed, calculate and update the cost of the ship.
-    $('.initships0 .six-pod select').change(function(event) {
-        var sixvalues = $('.six-pod select option:selected');
-        sixCost = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
-        sixCost = sixCost + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
-        $('.initships0 .six-pod-cost').text(sixCost + ' Ship Points');
-    });
-    $('.initships0 .nine-pod select').change(function(event) {
-        var ninevalues = $('.initships0 .nine-pod select option:selected');
-        nineCost = 32 + parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost'));
-        $('.initships0 .nine-pod-cost').text(nineCost + ' Ship Points');
-    });
-
-    // ALWAYS check to see if the player can afford the ship(s). If not, disable the Purchase button.
-    $('body').keydown(function() {
-        CanBuyShips();
-    });
-    $('body').click(function() {
-        CanBuyShips();
-    });
-
-    // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p0ships array to correspond to ship purchased.
-    $('.initships0 #six-pod-select').click(function(event) {
-        ShipPoints[0] -= sixCost;
-        $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
-        p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships0 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
-        p0shipsval++;
-    });
-    $('.initships0 #nine-pod-select').click(function(event) {
-        ShipPoints[0] -= nineCost;
-        $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
-        p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
-        p0shipsval++;
-    });
-
-
-
-
-    // When one of the select boxes is changed, calculate and update the cost of the ship.
-    $('.initships1 .six-pod select').change(function(event) {
-        var sixvalues = $('.initships1 .six-pod select option:selected');
-        sixCost = 16 + parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost'));
-        sixCost = sixCost + parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost'));
-        $('.initships1 .six-pod-cost').text(sixCost + ' Ship Points');
-    });
-    $('.initships1 .nine-pod select').change(function(event) {
-        var ninevalues = $('.initships1 .nine-pod select option:selected');
-        nineCost = 32 + parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost'));
-        $('.initships1 .nine-pod-cost').text(nineCost + ' Ship Points');
-    });
-
-
-    // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p1ships array to correspond to ship purchased.
-    $('.initships1 #six-pod-select').click(function(event) {
-        ShipPoints[1] -= sixCost;
-        $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
-        p1ships[p1shipsval] = new Array();
-        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
-        p1shipsval++;
-    });
-    $('.initships1 #nine-pod-select').click(function(event) {
-        ShipPoints[1] -= nineCost;
-        $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
-        p1ships[p1shipsval] = new Array();
-        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
-        p1shipsval++;
-    });
-
-
-    $('#done0').click(function(event) {
-        $('.initships0').css({ // Then hide them...
-            'transform': 'translate(-200%, 0%)',
-            '-webkit-transform': 'translate(-200%, 0%)'
+        $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]); // I don't know why it doesn't quite work without this, but it doesn't.
+        $('#start').click(function() { // Start off with the start button hidden. Start the 'click' event listener.
+            $(this).css('display', 'none'); // Hide button when clicked
+            $('#end').css('display', 'inherit'); // Show the End Game button
+            $('#results').remove(); // Remove the Game Results (if they exist)
         });
-        $('.initships1').css({ // And show the next dialog.
-            'transform': 'translate(-100%, 0%)',
-            '-webkit-transform': 'translate(-100%, 0%)'
+
+        $('*').removeAttr('disabled').trigger('change'); // Un-disable anything that shouldn't start disabled
+        // These check to see when one of the buttons about starting tech levels is clicked. When it is, both it and the other button for that player are disabled.
+        $('button[name="1"]').click(function() {
+            accelLevel[0] = 2; // Set Acceleration tech level
+            laserLevel[0] = 2; // Set Laser tech level
+            $('button[name="1"]').attr('disabled', '');
+            $('button[name="2"]').attr('disabled', '').addClass('secondary');
+            buttonsClicked++; // Increment the counter
+            removeFirstThing(); // A function that closes the dialog and opens the next one.
         });
-    });
+        $('button[name="2"]').click(function() {
+            accelLevel[0] = 1; // Set Acceleration tech level
+            laserLevel[0] = 3; // Set Laser tech level
+            $('button[name="1"]').attr('disabled', '').addClass('secondary');
+            $('button[name="2"]').attr('disabled', '');
+            buttonsClicked++;
+            removeFirstThing();
+        });
+        $('button[name="3"]').click(function() {
+            accelLevel[1] = 2; // Set Acceleration tech level
+            laserLevel[1] = 2; // Set Laser tech level
+            $('button[name="3"]').attr('disabled', '');
+            $('button[name="4"]').attr('disabled', '').addClass('secondary');
+            buttonsClicked++;
+            removeFirstThing();
+        });
+        $('button[name="4"]').click(function() {
+            accelLevel[1] = 1; // Set Acceleration tech level
+            laserLevel[1] = 3; // Set Laser tech level
+            $('button[name="3"]').attr('disabled', '').addClass('secondary');
+            $('button[name="4"]').attr('disabled', '');
+            buttonsClicked++;
+            removeFirstThing();
+        });
 
-    // When the End Game button is pressed, show game results, hide End Game button, and show New Game button.
-    $('#end').click(function() {
-        $('#start').css('display', 'inherit');
-        $('body').append('<div id="results"><p>Player 1 VP: <span class="vp">' + vpoints[0] + '<p>Player 2 VP: <span class="vp">' + vpoints[1] + '</div>');
-        $(this).css('display', 'none');
-        if (vpoints[0] < vpoints[1]) {
-            $('#results').append('<p>You win!</p>');
-        } else if (vpoints[0] > vpoints[1]) {
-            $('#results').append('<p><i>You</i> win!</p>');
-        } else {
-            $('#results').append('<p>Nobody wins!</p>');
-        }
-    });
-});
+        // When one of the select boxes is changed, calculate and update the cost of the ship.
+        $('.initships0 .six-pod select').change(function(event) {
+            var sixvalues = $('.six-pod select option:selected');
+            sixCost = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
+            sixCost = sixCost + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
+            $('.initships0 .six-pod-cost').text(sixCost + ' Ship Points');
+        });
+        $('.initships0 .nine-pod select').change(function(event) {
+            var ninevalues = $('.initships0 .nine-pod select option:selected');
+            nineCost = 32 + parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost'));
+            $('.initships0 .nine-pod-cost').text(nineCost + ' Ship Points');
+        });
 
-var removeFirstThing = function() {
-    if (buttonsClicked == 2) { // Check if two buttons have been pressed
-        setTimeout(function() { // Wait for a bit
-            $('.inittech').css({ // Then hide them...
+        // ALWAYS check to see if the player can afford the ship(s). If not, disable the Purchase button.
+        $('body').keydown(function() {
+            CanBuyShips();
+        });
+        $('body').click(function() {
+            CanBuyShips();
+        });
+
+        // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p0ships array to correspond to ship purchased.
+        $('.initships0 #six-pod-select').click(function(event) {
+            ShipPoints[0] -= sixCost;
+            $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
+            p0ships[p0shipsval] = new Array();
+            p0ships[p0shipsval][0] = [parseFloat($('.initships0 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships0 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+            p0shipsval++;
+        });
+        $('.initships0 #nine-pod-select').click(function(event) {
+            ShipPoints[0] -= nineCost;
+            $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
+            p0ships[p0shipsval] = new Array();
+            p0ships[p0shipsval][0] = [parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+            p0shipsval++;
+        });
+
+
+
+
+        // When one of the select boxes is changed, calculate and update the cost of the ship.
+        $('.initships1 .six-pod select').change(function(event) {
+            var sixvalues = $('.initships1 .six-pod select option:selected');
+            sixCost = 16 + parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost'));
+            sixCost = sixCost + parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost'));
+            $('.initships1 .six-pod-cost').text(sixCost + ' Ship Points');
+        });
+        $('.initships1 .nine-pod select').change(function(event) {
+            var ninevalues = $('.initships1 .nine-pod select option:selected');
+            nineCost = 32 + parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost'));
+            nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost'));
+            $('.initships1 .nine-pod-cost').text(nineCost + ' Ship Points');
+        });
+
+
+        // First, subtract the cost of the pending ship from the player's ship points and update number shown. Then, create new ship in p1ships array to correspond to ship purchased.
+        $('.initships1 #six-pod-select').click(function(event) {
+            ShipPoints[1] -= sixCost;
+            $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
+            p1ships[p1shipsval] = new Array();
+            p1ships[p1shipsval][0] = [parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+            p1shipsval++;
+        });
+        $('.initships1 #nine-pod-select').click(function(event) {
+            ShipPoints[1] -= nineCost;
+            $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
+            p1ships[p1shipsval] = new Array();
+            p1ships[p1shipsval][0] = [parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+            p1shipsval++;
+        });
+
+
+        $('#done0').click(function(event) {
+            $('.initships0').css({ // Then hide them...
                 'transform': 'translate(-200%, 0%)',
                 '-webkit-transform': 'translate(-200%, 0%)'
             });
-            $('.initships0').css({ // And show the next dialog.
+            $('.initships1').css({ // And show the next dialog.
                 'transform': 'translate(-100%, 0%)',
                 '-webkit-transform': 'translate(-100%, 0%)'
             });
-            $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
-        }, 250);
+        });
+        $('#done1').click(function(event) {
+            $('.initships1').css({ // Then hide them...
+                'transform': 'translate(-200%, 0%)',
+                '-webkit-transform': 'translate(-200%, 0%)'
+            });
+            setTimeout(function() {
+                DomReady.ready(function() {
+                    ThreeBox.preload([
+                        'MathBox.js-master/shaders/snippets.glsl.html',
+                    ], function() {
 
-    }
-};
+                        // MathBox boilerplate
+                        var mathbox = window.mathbox = mathBox({
+                            cameraControls: true,
+                            cursor: true,
+                            controlClass: ThreeBox.OrbitControls,
+                            elementResize: true,
+                            fullscreen: true,
+                            screenshot: true,
+                            stats: true,
+                            scale: 1,
+                        }).start();
 
-var CanBuyShips = function() {
-    if (sixCost > ShipPoints[0]) {
-        $('.initships0 #six-pod-select').attr('disabled', 'disabled');
-        $('.initships0 .six-pod').css('opacity', '0.6');
-    } else {
-        $('.initships0 #six-pod-select').removeAttr('disabled');
-        $('.initships0 .six-pod').css('opacity', '1');
-    }
-    if (nineCost > ShipPoints[0]) {
-        $('.initships0 #nine-pod-select').attr('disabled', 'disabled');
-        $('.initships0 .nine-pod').css('opacity', '0.6');
-    } else {
-        $('.initships0 #nine-pod-select').removeAttr('disabled');
-        $('.initships0 .nine-pod').css('opacity', '1');
-    }
-    if (ShipPoints[0] < 48) {
-        $('#done0').removeClass('disabled has-tip').removeAttr('data-tooltip');
-    }
-    if (sixCost > ShipPoints[1]) {
-        $('.initships1 #six-pod-select').attr('disabled', 'disabled');
-        $('.initships1 .six-pod').css('opacity', '0.6');
-    } else {
-        $('.initships1 #six-pod-select').removeAttr('disabled');
-        $('.initships1 .six-pod').css('opacity', '1');
-    }
-    if (nineCost > ShipPoints[1]) {
-        $('.initships1 #nine-pod-select').attr('disabled', 'disabled');
-        $('.initships1 .nine-pod').css('opacity', '0.6');
-    } else {
-        $('.initships1 #nine-pod-select').removeAttr('disabled');
-        $('.initships1 .nine-pod').css('opacity', '1');
-    }
-    if (ShipPoints[1] < 48) {
-        $('#done1').removeClass('disabled has-tip').removeAttr('data-tooltip');
-    }
+                        // Viewport camera/setup
+                        mathbox
+                        // Cartesian viewport
+                        .viewport({
+                            type: 'cartesian',
+                            range: [
+                                [-30, 30],
+                                [-20, 20],
+                                [-10, 10]
+                            ],
+                            scale: [1, 1, 1],
+                        })
+                            .camera({
+                                orbit: 3.5,
+                                phi: τ/6,
+          theta: 0.3,
+        })
+        .transition(300)
 
-};
+        // Axes
+                                .axis({
+                                    id: 'a',
+                                    axis: 0,
+                                    color: 0xa0a0a0,
+                                    ticks: 5,
+                                    lineWidth: 2,
+                                    size: .05,
+                                    labels: true,
+                                })
+                                    .axis({
+                                        id: 'b',
+                                        axis: 1,
+                                        color: 0xa0a0a0,
+                                        ticks: 5,
+                                        lineWidth: 2,
+                                        size: .05,
+                                        zero: false,
+                                        labels: true,
+                                    })
+                                    .axis({
+                                        id: 'c',
+                                        axis: 2,
+                                        color: 0xa0a0a0,
+                                        ticks: 5,
+                                        lineWidth: 2,
+                                        size: .05,
+                                        zero: false,
+                                        labels: true,
+                                    })
+
+                                // Grid
+                                .grid({
+                                    axis: [0, 2],
+                                    color: 0xc0c0c0,
+                                    lineWidth: 1,
+                                })
+
+                                // Move axis
+                                setTimeout(function() {
+                                    mathbox.set('#c', {
+                                        zero: true
+                                    });
+                                    mathbox.animate('#a', {
+                                        offset: [0, 0, -10],
+                                    }, {
+                                        duration: 1500
+                                    });
+                                    mathbox.animate('#b', {
+                                        offset: [-30, 0, -10],
+                                    }, {
+                                        duration: 1500
+                                    });
+                                    mathbox.animate('#c', {
+                                        offset: [-30, 0, 0],
+                                    }, {
+                                        duration: 1500
+                                    });
+                                }, 3000);
+
+                                // Move axis + grid
+                                setTimeout(function() {
+                                    mathbox.set('#b', {
+                                        labels: false,
+                                        arrow: false
+                                    });
+                                    mathbox.axis({
+                                        id: 'd',
+                                        axis: 1,
+                                        offset: [30, 0, -10],
+                                        ticks: 5,
+                                        lineWidth: 2,
+                                        color: 0xa0a0a0,
+                                        labels: true,
+                                        arrow: false,
+                                    });
+                                    mathbox.axis({
+                                        id: 'e',
+                                        axis: 1,
+                                        offset: [-30, 0, 10],
+                                        ticks: 5,
+                                        lineWidth: 2,
+                                        arrow: false,
+                                        color: 0xa0a0a0,
+                                    });
+                                    mathbox.axis({
+                                        id: 'f',
+                                        axis: 1,
+                                        offset: [30, 0, 10],
+                                        ticks: 5,
+                                        lineWidth: 2,
+                                        arrow: false,
+                                        color: 0xa0a0a0,
+                                    });
+                                    mathbox.animate('grid', {
+                                        offset: [0, -20, 0],
+                                    }, {
+                                        duration: 1500
+                                    });
+                                    mathbox.grid({
+                                        axis: [0, 2],
+                                        ticks: [2, 1],
+                                        offset: [0, 20, 0],
+                                        color: 0xc0c0c0,
+                                        lineWidth: 1,
+                                    });
+                                    mathbox.animate('camera', {
+                                        orbit: 7,
+                                        phi: τ * 5 / 8 + .2
+                                    }, {
+                                        duration: 2500
+                                    });
+                                    mathbox.animate('#a', {
+                                        offset: [0, -20, -10],
+                                    }, {
+                                        duration: 1500
+                                    });
+                                    mathbox.animate('#c', {
+                                        offset: [-30, -20, 0],
+                                    }, {
+                                        duration: 1500
+                                    });
+
+                                    mathbox.vector({
+                                        n: 2,
+                                        data: [
+                                            [0, 0, 0],
+                                            [10, 10, 10],
+                                            [-10, -10, -10],
+                                            [0, 10, 5]
+                                        ],
+                                    });
+                                }, 6000);
+
+                            });
+                        document.getElementsByTagName('body').setAttribute("style", "margin: 0px;padding: 0px;overflow: hidden;cursor: default;");
+                        document.getElementsByTagName('canvas').setAttribute("style", "display: block;position: absolute;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
+                        document.querySelector('div.mathbox-overlay').setAttribute("style", "position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;width: 1680px;height: 461px;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
+                    });
+                }, 1000)
+            });
+
+            // When the End Game button is pressed, show game results, hide End Game button, and show New Game button.
+            $('#end').click(function() {
+                $('#start').css('display', 'inherit');
+                $('body').append('<div id="results"><p>Player 1 VP: <span class="vp">' + vpoints[0] + '<p>Player 2 VP: <span class="vp">' + vpoints[1] + '</div>');
+                $(this).css('display', 'none');
+                if (vpoints[0] < vpoints[1]) {
+                    $('#results').append('<p>You win!</p>');
+                } else if (vpoints[0] > vpoints[1]) {
+                    $('#results').append('<p><i>You</i> win!</p>');
+                } else {
+                    $('#results').append('<p>Nobody wins!</p>');
+                }
+            });
+        });
+
+        var removeFirstThing = function() {
+            if (buttonsClicked == 2) { // Check if two buttons have been pressed
+                setTimeout(function() { // Wait for a bit
+                    $('.inittech').css({ // Then hide them...
+                        'transform': 'translate(-200%, 0%)',
+                        '-webkit-transform': 'translate(-200%, 0%)'
+                    });
+                    $('.initships0').css({ // And show the next dialog.
+                        'transform': 'translate(-100%, 0%)',
+                        '-webkit-transform': 'translate(-100%, 0%)'
+                    });
+                    $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]); // Show the number of Ship Points.
+                }, 250);
+
+            }
+        };
+
+        var CanBuyShips = function() {
+            if (sixCost > ShipPoints[0]) {
+                $('.initships0 #six-pod-select').attr('disabled', 'disabled');
+                $('.initships0 .six-pod').css('opacity', '0.6');
+            } else {
+                $('.initships0 #six-pod-select').removeAttr('disabled');
+                $('.initships0 .six-pod').css('opacity', '1');
+            }
+            if (nineCost > ShipPoints[0]) {
+                $('.initships0 #nine-pod-select').attr('disabled', 'disabled');
+                $('.initships0 .nine-pod').css('opacity', '0.6');
+            } else {
+                $('.initships0 #nine-pod-select').removeAttr('disabled');
+                $('.initships0 .nine-pod').css('opacity', '1');
+            }
+            if (ShipPoints[0] < 48) {
+                $('#done0').removeClass('disabled has-tip').removeAttr('data-tooltip');
+            }
+            if (sixCost > ShipPoints[1]) {
+                $('.initships1 #six-pod-select').attr('disabled', 'disabled');
+                $('.initships1 .six-pod').css('opacity', '0.6');
+            } else {
+                $('.initships1 #six-pod-select').removeAttr('disabled');
+                $('.initships1 .six-pod').css('opacity', '1');
+            }
+            if (nineCost > ShipPoints[1]) {
+                $('.initships1 #nine-pod-select').attr('disabled', 'disabled');
+                $('.initships1 .nine-pod').css('opacity', '0.6');
+            } else {
+                $('.initships1 #nine-pod-select').removeAttr('disabled');
+                $('.initships1 .nine-pod').css('opacity', '1');
+            }
+            if (ShipPoints[1] < 48) {
+                $('#done1').removeClass('disabled has-tip').removeAttr('data-tooltip');
+            }
+
+        };
