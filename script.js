@@ -284,7 +284,7 @@ $(document).ready(function() {
                                     mathbox.axis({
                                         id: 'd',
                                         axis: 1,
-                                        offset: [30, 0, -10],
+                                        offset: [-30, 0, -10],
                                         ticks: 5,
                                         lineWidth: 2,
                                         color: 0xa0a0a0,
@@ -303,7 +303,7 @@ $(document).ready(function() {
                                     mathbox.axis({
                                         id: 'f',
                                         axis: 1,
-                                        offset: [30, 0, 10],
+                                        offset: [-30, 0, 10],
                                         ticks: 5,
                                         lineWidth: 2,
                                         arrow: false,
@@ -316,7 +316,7 @@ $(document).ready(function() {
                                     });
                                     mathbox.grid({
                                         axis: [0, 2],
-                                        ticks: [2, 1],
+                                        ticks: [5, 10],
                                         offset: [0, 20, 0],
                                         color: 0xc0c0c0,
                                         lineWidth: 1,
@@ -341,20 +341,17 @@ $(document).ready(function() {
                                     mathbox.vector({
                                         n: 2,
                                         data: [
-                                            [0, 0, 0],
-                                            [10, 10, 10],
-                                            [-10, -10, -10],
+                                            [0, 0, 7],
+                                            [10, 4, 10],
+                                            [-1, -10, -10],
                                             [0, 10, 5]
                                         ],
                                     });
                                 }, 6000);
 
                             });
-                        document.getElementsByTagName('body').setAttribute("style", "margin: 0px;padding: 0px;overflow: hidden;cursor: default;");
-                        document.getElementsByTagName('canvas').setAttribute("style", "display: block;position: absolute;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
-                        document.querySelector('div.mathbox-overlay').setAttribute("style", "position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;width: 1680px;height: 461px;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
                     });
-                }, 500)
+                }, 250)
             });
 
             // When the End Game button is pressed, show game results, hide End Game button, and show New Game button.
