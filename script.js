@@ -354,7 +354,7 @@ $(document).ready(function() {
                         document.getElementsByTagName('canvas').setAttribute("style", "display: block;position: absolute;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
                         document.querySelector('div.mathbox-overlay').setAttribute("style", "position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;width: 1680px;height: 461px;transform: translate(100%, 0%);-webkit-transform: translate(100%, 0%)");
                     });
-                }, 1000)
+                }, 500)
             });
 
             // When the End Game button is pressed, show game results, hide End Game button, and show New Game button.
