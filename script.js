@@ -316,7 +316,7 @@ $(document).ready(function() {
                                     });
                                     mathbox.grid({
                                         axis: [0, 2],
-                                        ticks: [5, 10],
+                                        ticks: [10, 10],
                                         offset: [0, 20, 0],
                                         color: 0xc0c0c0,
                                         lineWidth: 1,
