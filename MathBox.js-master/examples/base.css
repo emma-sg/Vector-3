@@ -1,4 +1,4 @@
-html, body { height: -webkit-calc(100% - 100px); height: calc(100% - 100px); }
+html, body { height: -webkit-calc(100% - 50px); height: calc(100% - 50px); }
 body { margin: 0; padding: 0 }
 canvas { display: block }
 

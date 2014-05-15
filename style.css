@@ -63,8 +63,8 @@ select:hover, select option:hover, select:focus {
 .graphshown {
 	position: fixed;
 	left: 0;
-	width: 94%;
-	margin: 0 auto;
+	width: 100%;
+	padding: 0 3%;
 	border-top: 1px solid #777
 }
 .graphshown.top {
