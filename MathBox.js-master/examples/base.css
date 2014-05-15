@@ -1,4 +1,4 @@
-html, body { height: 100%; }
+html, body { height: -webkit-calc(100% - 100px); height: calc(100% - 100px); }
 body { margin: 0; padding: 0 }
 canvas { display: block }
 
@@ -27,7 +27,6 @@ canvas { display: block }
 
 #info.transition {
   -webkit-transition: opacity 300ms ease-in-out;
-  -moz-transition: opacity 300ms ease-in-out;
   transition: opacity 300ms ease-in-out;
 }
 
