@@ -89,16 +89,16 @@ $(document).ready(function() {
     // When one of the select boxes is changed, calculate and update the cost of the ship.
     $('.initships0 .six-pod select').change(function(event) {
         var sixvalues = $('.six-pod select option:selected');
-        sixCost = 16 + parseFloat($('.six-pod select option:selected:first').attr('data-cost'));
-        sixCost = sixCost + parseFloat($('.six-pod select option:selected:last').attr('data-cost'));
+        sixCost = 16 + parseInt($('.six-pod select option:selected:first').attr('data-cost'));
+        sixCost = sixCost + parseInt($('.six-pod select option:selected:last').attr('data-cost'));
         $('.initships0 .six-pod-cost').text(sixCost + ' Ship Points');
     });
     $('.initships0 .nine-pod select').change(function(event) {
         var ninevalues = $('.initships0 .nine-pod select option:selected');
-        nineCost = 32 + parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost'));
+        nineCost = 32 + parseInt($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost'));
         $('.initships0 .nine-pod-cost').text(nineCost + ' Ship Points');
     });
 
@@ -115,14 +115,14 @@ $(document).ready(function() {
         ShipPoints[0] -= sixCost;
         $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
         p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships0 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+        p0ships[p0shipsval][0] = [parseInt($('.initships0 .six-pod select option:selected:first').attr('data-cost')), parseInt($('.initships0 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
         p0shipsval++;
     });
     $('.initships0 #nine-pod-select').click(function(event) {
         ShipPoints[0] -= nineCost;
         $('#sp0').text('Ship Points remaining: ' + ShipPoints[0]);
         p0ships[p0shipsval] = new Array();
-        p0ships[p0shipsval][0] = [parseFloat($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+        p0ships[p0shipsval][0] = [parseInt($('.initships0 .nine-pod select option:selected').eq(0).attr('data-cost')), parseInt($('.initships0 .nine-pod select option:selected').eq(1).attr('data-cost')), parseInt($('.initships0 .nine-pod select option:selected').eq(2).attr('data-cost')), parseInt($('.initships0 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
         p0shipsval++;
     });
 
@@ -132,16 +132,16 @@ $(document).ready(function() {
     // When one of the select boxes is changed, calculate and update the cost of the ship.
     $('.initships1 .six-pod select').change(function(event) {
         var sixvalues = $('.initships1 .six-pod select option:selected');
-        sixCost = 16 + parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost'));
-        sixCost = sixCost + parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost'));
+        sixCost = 16 + parseInt($('.initships1 .six-pod select option:selected:first').attr('data-cost'));
+        sixCost = sixCost + parseInt($('.initships1 .six-pod select option:selected:last').attr('data-cost'));
         $('.initships1 .six-pod-cost').text(sixCost + ' Ship Points');
     });
     $('.initships1 .nine-pod select').change(function(event) {
         var ninevalues = $('.initships1 .nine-pod select option:selected');
-        nineCost = 32 + parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost'));
-        nineCost = nineCost + parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost'));
+        nineCost = 32 + parseInt($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost'));
+        nineCost = nineCost + parseInt($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost'));
         $('.initships1 .nine-pod-cost').text(nineCost + ' Ship Points');
     });
 
@@ -151,14 +151,14 @@ $(document).ready(function() {
         ShipPoints[1] -= sixCost;
         $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
         p1ships[p1shipsval] = new Array();
-        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .six-pod select option:selected:first').attr('data-cost')), parseFloat($('.initships1 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
+        p1ships[p1shipsval][0] = [parseInt($('.initships1 .six-pod select option:selected:first').attr('data-cost')), parseInt($('.initships1 .six-pod select option:selected:last').attr('data-cost')), 2, 2, 2, 2];
         p1shipsval++;
     });
     $('.initships1 #nine-pod-select').click(function(event) {
         ShipPoints[1] -= nineCost;
         $('#sp1').text('Ship Points remaining: ' + ShipPoints[1]);
         p1ships[p1shipsval] = new Array();
-        p1ships[p1shipsval][0] = [parseFloat($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseFloat($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
+        p1ships[p1shipsval][0] = [parseInt($('.initships1 .nine-pod select option:selected').eq(0).attr('data-cost')), parseInt($('.initships1 .nine-pod select option:selected').eq(1).attr('data-cost')), parseInt($('.initships1 .nine-pod select option:selected').eq(2).attr('data-cost')), parseInt($('.initships1 .nine-pod select option:selected').eq(3).attr('data-cost')), 2, 2, 2, 2, 2];
         p1shipsval++;
     });
 
@@ -212,8 +212,8 @@ $(document).ready(function() {
                     }).camera({
                         orbit: 3.5,
                         phi: τ/6,
-                            theta: 0.3,
-                        }).transition(300).axis({
+                        theta: 0.3,
+                    }).transition(300).axis({
                         id: 'a',
                         axis: 0,
                         color: 0xa0a0a0,
@@ -254,7 +254,7 @@ $(document).ready(function() {
                     // Move axis + grid
                     setTimeout(function() {
                         mathbox.vector({
-                            n: 3,
+                            n: p0ships.length,
                             color: 0x007095,
                             data: [
                                 [0, 0, 7],
