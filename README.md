@@ -20,4 +20,3 @@ Please add to this as you work your way through!
 - [ ] Add extra features: 
   - Planets (with gravity that you have to account for)
   - Fuel (maybe you can refuel on planets - a use for Cargo pods)
-  - 
