@@ -2,7 +2,7 @@ Vector-3
 ========
 
 Adaptation the [original game](https://web.archive.org/web/20131115042508/http://playthisthing.com/vector-3) by Greg Costikyan.
-Coded by [@EdenSG](https://github.com/EdenSG) and [@1sadtrombone](https://github.com/1sadtrombone).
+Coded by [@EdenSG](https://github.com/EdenSG), [@TheMacMini09](https://github.com/TheMacMini09) and [@1sadtrombone](https://github.com/1sadtrombone).
 
 
 Todo:
