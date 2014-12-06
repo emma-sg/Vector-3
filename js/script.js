@@ -46,7 +46,7 @@
         },
     };
     players = [
-        new Player("borrrrb"),
+        new Player("Yrrs, mrr nrrm rrs Borrrrb."),
         new Player("fred"),
         new Player("george"),
     ];
@@ -303,3 +303,8 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 //     }
 
 // };
+
+function nextPage() {
+    $('.slide.current').removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
+}
+
