@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         // Watch //
         watch: {
             js: {
-                files: ['js/*.js'],
+                files: ['js/**.js'],
                 tasks: ['js'],
                 options: {
                     spawn: false,
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 },
             },
             html: {
-                files: ['*.html'],
+                files: ['**.html'],
                 tasks: ['html'],
                 options: {
                     spawn: false,
@@ -61,12 +61,15 @@ module.exports = function(grunt) {
             build: {
                 src: ['js/libs/*.js', 'js/*.js'],
                 dest: 'dist/js/main.min.js'
+            },
+            bower_js: {
+                src: ['dist/js/_bower.js'],
+                dest: 'dist/js/_bower.js'
             }
         },
 
         // CSS //
         sass: {
-            options: {},
             dist: {
                 files: {
                     'tmp/main.css': 'css/main.scss'
@@ -76,7 +79,12 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'dist/css/main.css': ['tmp/*.css', 'css/*.css']
+                    'dist/css/main.css': ['./tmp/main.css', 'css/*.css']
+                }
+            },
+            bower_css: {
+                files: {
+                    'dist/css/_bower.css': 'dist/css/_bower.css'
                 }
             }
         },
@@ -131,7 +139,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true, // Enable dynamic expansion.
                     cwd: './', // Src matches are relative to this path.
-                    src: ['*.html'], // Actual pattern(s) to match.
+                    src: ['**.html'], // Actual pattern(s) to match.
                     dest: 'dist/', // Destination path prefix.
                     ext: '.html', // Dest filepaths will have this extension.
                     extDot: 'first' // Extensions in filenames begin after the first dot
@@ -139,11 +147,15 @@ module.exports = function(grunt) {
             }
         },
 
+
+        // Clean //
+        clean: ['tmp'],
+
         // Host //
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: ['dist/css/*.css', 'dist/*.html', 'dist/js/*.js', 'dist/img/**']
+                    src: ['dist/**']
                 },
                 options: {
                     watchTask: true,
@@ -154,7 +166,7 @@ module.exports = function(grunt) {
             },
             host: {
                 bsFiles: {
-                    src: ['dist/css/*.css', 'dist/*.html', 'dist/js/*.js', 'dist/img/**']
+                    src: ['dist/**']
                 },
                 options: {
                     watchTask: false,
@@ -171,7 +183,7 @@ module.exports = function(grunt) {
     // JS
     grunt.loadNpmTasks('grunt-contrib-uglify');
     // Styles
-    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-uncss');
@@ -184,6 +196,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower-concat');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
 
     // Tasks
@@ -192,7 +205,7 @@ module.exports = function(grunt) {
     grunt.registerTask('bower', ['bower_concat']);
     grunt.registerTask('js', ['uglify']);
     grunt.registerTask('html', ['htmlmin']);
-    grunt.registerTask('styles', ['sass', 'cssmin', 'newer:uncss:dist', 'autoprefixer']);
+    grunt.registerTask('styles', ['sass', 'cssmin', 'newer:uncss:dist', 'autoprefixer', 'clean']);
     grunt.registerTask('images', ['newer:copy:main', 'newer:imageoptim:myTask']);
 
     grunt.registerTask('serve', ['default', 'browserSync:dev', 'watch']);
