@@ -2,9 +2,10 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="js/_bower.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
     <meta charset="utf-8">
     <title>V3</title>
     <link rel="stylesheet" href="css/_bower.css" />
@@ -19,20 +20,27 @@
 
 <body ng-app="game">
     <button id="start" style="display:none;">Start game</button>
-    <div class="inittech padded centered animated slide">
+    <div class="inittech padded centered animated slide" ng-controller="TechPointsController as techCtrl">
         <h1>Vector <span style="color:#4CAFCF">3</span></h1>
         <p>Adaptation the <a href="https://web.archive.org/web/20131115042508/http://playthisthing.com/vector-3">original game</a> by Greg Costikyan.</p>
         <p>Coded by <a href="https://github.com/EdenSG">@EdenSG</a> and <a href="https://github.com/1sadtrombone">@1sadtrombone</a>.</p>
         <br/>
-        <h5>Player 0</h5>
-        <button name="1">2 Acceleration, 2 Laser</button>
-        <button name="2">1 Acceleration, 3 Laser</button>
+        <div ng-repeat="player in techCtrl.players">
+            <h5>{{ player.name }}</h5>
+            <form class="button-group round">
+                <button name="2" ng-model="click1" ng-class="{ 'selected': player.accelLevel == 2 }" ng-click="player.setLevels(2,2)" ng-model="a" /></label>2 Acceleration, 2 Laser<input style="display:none" type="radio" name="1" ng-value="2" ng-model="player.accelLevel"/></label>
+                
+                <button name="2" ng-model="click1" ng-class="{ 'selected': player.accelLevel == 1 }" ng-click="player.setLevels(1,3)" ng-model="b" /></label>1 Acceleration, 3 Laser<input style="display:none" type="radio" name="1" ng-value="1" ng-model="player.accelLevel"/></label>
+                
+                <br/>
+            </form>
+        </div>
+        <button>Next</button>
         <br/>
-        <br/>
-        <h5>Player 1</h5>
+        <!--         <h5>Player 1</h5>
         <button name="3">2 Acceleration, 2 Laser</button>
         <button name="4">1 Acceleration, 3 Laser</button>
-        <br/>
+        <br/> -->
     </div>
     <div class="initships0 padded animated slide" style="left:100%;">
         <h4>Player 0</h4>
@@ -262,9 +270,11 @@
 
 
 
-
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script> -->
+    <!-- <script src="js/libs.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
     <script type="text/javascript" src="js/_bower.js"></script>
-    <script type="text/javascript" src="js/script.js">
+    <script type="text/javascript" src="js/main.min.js">
     </script>
     <script>
     $(document).foundation();
