@@ -53,14 +53,24 @@ module.exports = function(grunt) {
             all: {
                 dest: 'dist/js/_bower.js',
                 cssDest: 'dist/css/_bower.css',
-            }
+                include: [
+                    'angular-latest',
+                    'jquery',
+                    'foundation',
+                ]
+            },
+
         },
 
         // JS //
         uglify: {
             build: {
-                src: ['js/libs/*.js', 'js/*.js'],
+                src: ['js/*.js'],
                 dest: 'dist/js/main.min.js'
+            },
+            libs: {
+                src: ['js.libs/*.js'],
+                dest: 'dist/js/libs.js'
             },
             bower_js: {
                 src: ['dist/js/_bower.js'],
