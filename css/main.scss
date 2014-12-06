@@ -1,0 +1,152 @@
+table {
+    width: 100%;
+    border: none;
+}
+
+.initships0 table {
+    tbody tr td, tr td {
+        height: 40px;
+        line-height: 40px;
+        background: #4CAFCF;
+        width: 5%;
+    }
+}
+
+.initships1 table {
+    tbody tr td, tr td {
+        height: 40px;
+        line-height: 40px;
+        background: #4CAFCF;
+        width: 5%;
+    }
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+h1 {
+    font-family: Play, sans-serif;
+}
+
+.clearfix {
+    button {
+        float: left;
+        border-radius: 30%/500%;
+    }
+    h6 {
+        padding: 16px 32px 17px;
+        margin: 0;
+        display: inline-block;
+    }
+}
+
+button:nth-of-type(2n) {
+    border-radius: 0 50% 50% 0 / 0 500% 500% 0;
+}
+
+button:nth-of-type(2n+1) {
+    border-radius: 50% 0 0 50% / 500% 0 0 500%;
+}
+
+.small-block-grid-2 {
+    margin-top: 30px;
+}
+
+select {
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+    border: none;
+    background: #3196b7;
+    border: 1px solid #000 collapse;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    option {
+        padding: 5px;
+        width: 100%;
+        margin: 0;
+        border: none;
+        background: #3196b7;
+        border: 1px solid #000 collapse;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+    &:hover, option:hover, &:focus {
+        background: #008cba;
+        border: 1px solid #000 collapse;
+    }
+}
+
+.centered {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+.padded {
+    padding: 1% 3%;
+}
+
+// .animated {
+//     -webkit-transition: all 0.5s ease;
+//     transition: all 0.5s ease;
+//     -webkit-transform: translateZ(0);
+//     transform: translateZ(0);
+// }
+
+.slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transition: all 0.5s ease;
+    &.panel-left {
+        transform: translateX(100%);
+    }
+    &.panel-right {
+        transform: translateX(-100%);
+    }
+}
+
+.graphshown {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 0 3%;
+    border-top: 1px solid #777;
+    &.top {
+        height: 100px;
+        bottom: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
