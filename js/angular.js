@@ -1,8 +1,8 @@
-(function() {
-  var app = angular.module('game', []);
+// (function() {
+//   var app = angular.module('game', []);
 
-  app.controller('ChoosePointsController', function(){
-    this.products = gems;
-  });
+//   app.controller('ChoosePointsController', function(){
+//     this.products = gems;
+//   });
   
-})();
+// })();
