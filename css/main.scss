@@ -30,24 +30,19 @@ h1 {
     font-family: Play, sans-serif;
 }
 
+.inittech input[type="radio"]{
+    border: 1px solid #999;
+}
+
 .clearfix {
     button {
         float: left;
-        border-radius: 30%/500%;
     }
     h6 {
         padding: 16px 32px 17px;
         margin: 0;
         display: inline-block;
     }
-}
-
-button:nth-of-type(2n) {
-    border-radius: 0 50% 50% 0 / 0 500% 500% 0;
-}
-
-button:nth-of-type(2n+1) {
-    border-radius: 50% 0 0 50% / 500% 0 0 500%;
 }
 
 .small-block-grid-2 {
@@ -122,7 +117,10 @@ select {
     }
 }
 
-
+button.selected {
+    box-shadow: 0 3px 7px -2px #222 inset;
+    background-color: #007095;
+}
 
 
 
