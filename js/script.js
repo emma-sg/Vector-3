@@ -68,8 +68,8 @@ var panel1count = players.length;
 app.controller('PlayerInitController', function() {
     this.playerName = "";
     this.playerMessage = "Add player";
-    this.addPlayer = function(name) {
-        players.push(new Player(name));
+    this.addPlayer = function(pname) {
+        players[players.length] = new Player(pname);
         this.playerName = "";
         this.playerMessage = "Add another player";
     };
@@ -333,7 +333,7 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 
 function nextPage() {
     var currentPanel = $('section.current');
-    var nextPanel = $('section.current').nextAll().find('section').eq(0);
-    currentPanel.removeClass('current').addClass('panel-left');
-    nextPanel.removeClass('panel-right').addClass('current');
+    var nextPanel = $('section.current');
+    // currentPanel.removeClass('current').addClass('panel-left').nextAll().find('section').eq(0).removeClass('panel-right').addClass('current');
+    currentPanel.removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
 }

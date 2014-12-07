@@ -26,7 +26,7 @@
         <p>Coded by <a href="https://github.com/EdenSG">@EdenSG</a>, <a href="https://github.com/TheMacMini09">@TheMacMini09</a> and <a href="https://github.com/1sadtrombone">@1sadtrombone</a>.</p>
         <br/>
         <form ng-submit="playerInit.addPlayer(playerName)" name="playerAdd">
-            <input placeholder="Player name" ng-model="playerInit.playerName" required name="name"/>
+            <input placeholder="Player name" ng-model="playerInit.playerName" name="name" class="button disabled secondary" />
             <button ng-click="playerInit.addPlayer(playerName)" ng-class="{ disabled: playerInit.playerAdd.$error }">{{ playerInit.playerMessage }}</button>
         </form>
         <button class="margined" onclick="nextPage()" ng-show="playerInit.playerMessage == 'Add another player'">Next</button>
