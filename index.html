@@ -54,35 +54,36 @@
         <button name="4">1 Acceleration, 3 Laser</button>
         <br/> -->
     </section>
-    <span ng-controller="ShipStoreController as shipstore" class="width:0">
-        <section class="initships0 padded animated slide panel-right" ng-repeat="player in shipstore.players">
+    <section class="initships0 padded animated slide panel-right" ng-controller="ShipStoreController as shipstore" class="width:0">
+        <div ng-repeat="player in shipstore.players">
             <h4>{{ player.name }}</h4>
             <div id="sp0">{{ player.shipPoints }} Ship Points (SP) remaining.</div>
             <ul class="small-block-grid-2">
                 <li class="clearfix">
-                    <button id="six-pod-select">Purchase</button>
+                    <button id="six-pod-select" onclick="purchase(6)">Purchase</button>
                     <h6 class="six-pod-cost">18 Ship Points
                     </h6>
+                    
                     <table class="six-pod">
                         <tbody>
                             <tr>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
@@ -99,7 +100,7 @@
                     </table>
                 </li>
                 <li class="clearfix">
-                    <button id="nine-pod-select">Purchase</button>
+                    <button id="nine-pod-select" onclick="purchase(9)">Purchase</button>
                     <h6 class="nine-pod-cost">36 Ship Points
                     </h6>
                     <table class="nine-pod text-center">
@@ -107,11 +108,11 @@
                             <tr>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
@@ -120,11 +121,11 @@
                                 </td>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
@@ -132,22 +133,22 @@
                             <tr>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
                                 <td>Cabin</td>
                                 <td>
                                     <select>Select
-                                        <option selected value="Cargo" data-cost="1">Cargo (1
+                                        <option selected value=1 dataCost="1">Cargo (1
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Cabin" data-cost="2">Cabin (2
+                                        <option value=2 dataCost="2">Cabin (2
                                             <abbr title="Ship Points">SP</abbr>)</option>
-                                        <option value="Laser" data-cost="4">Laser (4
+                                        <option value=4 dataCost="4">Laser (4
                                             <abbr title="Ship Points">SP</abbr>)</option>
                                     </select>
                                 </td>
@@ -161,9 +162,9 @@
                     </table>
                 </li>
             </ul>
-            <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!" onclick="nextPage()">Done</button>
-        </section>
-    </span>
+        </div>
+        <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!" onclick="nextPage()">Done</button>
+    </section>
     <section class="initships1 padded animated slide panel-right ">
         <h4>Player 1</h4>
         <div id="sp1"></div>

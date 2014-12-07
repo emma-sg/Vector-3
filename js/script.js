@@ -35,7 +35,7 @@ function Player(name) {
     this.victoryPoints = 0;
     this.ships = [];
     this.chosen = false;
-    this.setLevels = function(accel, las, element) {
+    this.setLevels = function(accel, las) {
         this.accelLevel = accel;
         this.laserLevel = las;
         if (this.chosen === false) {
@@ -86,9 +86,9 @@ app.controller('TechPointsController', function() {
     this.ships = ships;
     this.players = players;
     // this.count = panel1count;
-    this.shouldShowNext = false
+    this.shouldShowNext = false;
     this.showNext = function() {
-        if (panel1count === 0) {
+        if (panel1count <= 0) {
             this.shouldShowNext = true;
         };
     }
@@ -109,7 +109,31 @@ var m = 0.5;
 var sixCost = 18; // Minimum cost of a 6-pod ship
 var nineCost = 36; // Minimum cost of a 9-pod ship
 
+var purchaseMessage = "";
+
 var buttonsClicked = 0; // Count the number of buttons in the first screen when this == 2
+
+function purchase(size) {
+    if(size === 6){
+        var maxCost = sixCost;
+        var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
+        if(attemptBuyCost > sixCost){
+            purchaseMessage = "You have selected items that cost too much!";
+            $("#six-pod-select").after(purchaseMessage);
+        } else {
+            purchaseMessage = "Pods successfully purchased!";
+        }
+    } else if(size === 9){
+        var maxCost = nineCost;
+        var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
+        if(attemptBuyCost > sixCost){
+            purchaseMessage = "You have selected items that cost too much!";
+            $("#nine-pod-select").after(purchaseMessage);
+        } else {
+            purchaseMessage = "Pods successfully purchased!";
+        }
+    }
+}
 
 // var p0ships = new Array(); // Player 0's multidimensional array of ships.
 // var p0shipsval = 0; // The first dimension contains the separate ships (ie. [0] is the first ship, [1] is the second, etc.).
@@ -336,7 +360,7 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 
 function nextPage() {
     var currentPanel = $('section.current');
-    var nextPanel = $('section.current');
+    var nextPanel = $('section.current').next();
     // currentPanel.removeClass('current').addClass('panel-left').nextAll().find('section').eq(0).removeClass('panel-right').addClass('current');
     currentPanel.removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
 }
