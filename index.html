@@ -25,9 +25,9 @@
         <p>Adaptation the <a href="https://web.archive.org/web/20131115042508/http://playthisthing.com/vector-3">original game</a> by Greg Costikyan.</p>
         <p>Coded by <a href="https://github.com/EdenSG">@EdenSG</a> and <a href="https://github.com/1sadtrombone">@1sadtrombone</a>.</p>
         <br/>
-        <form ng-submit="playerInit.addPlayer(playerName)" name="">
-            <input placeholder="Player name" required ng-model="playerName" />
-            <button>Add another player</button>
+        <form ng-submit="playerInit.addPlayer(playerName)" name="playerAdd" novalidate>
+            <input placeholder="Player name" ng-model="playerInit.playerName" required name="name"/>
+            <button ng-click="playerInit.addPlayer(playerName)" ng-class="{ disabled:  }">Add another player</button>
         </form>
     </section>
     <section class="inittech padded centered animated slide panel-right" ng-controller="TechPointsController as techCtrl" id="panel1">

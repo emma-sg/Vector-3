@@ -66,10 +66,11 @@ players = [];
 var panel1count = players.length;
 
 app.controller('PlayerInitController', function() {
+    this.playerName = "";
     this.addPlayer = function(name) {
         players.push(new Player(name));
+        this.playerName = "";
     }
-    this.players;
 });
 
 app.controller('ShipStoreController', function() {
