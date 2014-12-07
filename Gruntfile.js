@@ -66,13 +66,13 @@ module.exports = function(grunt) {
         // JS //
         uglify: {
             build: {
-                src: ['js/*.js'],
+                src: ['js/script.js'],
                 dest: 'dist/js/main.min.js'
             },
-            // libs: {
-            //     src: ['js.libs/*.js'],
-            //     dest: 'dist/js/libs.js'
-            // },
+            canvas: {
+                src: ['js/canvas.js'],
+                dest: 'dist/js/canvas.js'
+            },
             // bower_js: {
             //     src: ['dist/js/_bower.js'],
             //     dest: 'dist/js/_bower.js'
