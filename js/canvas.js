@@ -2,9 +2,11 @@ var size = 30;
 
 var a = document.getElementById("canvas");
 var ctxa = a.getContext("2d");
+var labelsA = [a.getContext("2d"), a.getContext("2d")];
 
 var b = document.getElementById("canvas2");
 var ctxb = b.getContext("2d");
+var labelsB = [b.getContext("2d"), b.getContext("2d")];
 
 var width = window.innerWidth / 2;
 var height = window.innerHeight;
@@ -43,7 +45,13 @@ var limit_w = 3 * width / size;
 
 console.log(limit_h, limit_w);
 
+
+
+
+
 function draw() {
+    ctxa.translate(0, 0);
+    ctxa.rotate(0);
     ctxa.clearRect(0, 0, canvas.width, canvas.height);
     for (var y = 0; y < limit_h; y++) {
         for (i = 0; i < limit_w; i++) {
@@ -58,13 +66,6 @@ function draw() {
     ctxa.fillRect(4 * size + 1 + yOffset, 4 * size + 12 + xOffset, size - 2, size - 2);
     ctxa.fillStyle = "blue";
     ctxa.fillRect(200 + yOffsetObj, 200 + xOffsetObj, size, size);
-
-    ctxa.font = "20px 'Titillium Web',sans-serif";
-    ctxa.fillStyle = "#000";
-    ctxa.lineWidth = 18;
-    ctxa.strokeStyle = "rgba(255,255,255,0.9)";
-    ctxa.strokeText('Y axis', width / 2, height - 25);
-    ctxa.fillText('Y axis', width / 2, height - 25);
 
 
 
@@ -83,12 +84,36 @@ function draw() {
     ctxb.fillStyle = "blue";
     ctxb.fillRect(200 + zOffsetObj, 200 + xOffsetObj, size, size);
 
-    ctxb.font = "20px 'Titillium Web',sans-serif";
-    ctxb.fillStyle = "#000";
-    ctxb.lineWidth = 18;
-    ctxb.strokeStyle = "rgba(255,255,255,0.9)";
-    ctxb.strokeText('Y axis', width / 2, height - 25);
-    ctxb.fillText('Y axis', width / 2, height - 25);
+
+
+
+    labelsA[0].font = "20px 'Titillium Web',sans-serif";
+    labelsA[0].fillStyle = "#000";
+    labelsA[0].lineWidth = 3;
+    labelsA[0].strokeStyle = "rgba(255,255,255,0.9)";
+    labelsA[0].strokeText('Y axis', width / 2, height - 25);
+    labelsA[0].fillText('Y axis', width / 2, height - 25);
+
+    // labelsA[1].translate(canvas.width / 2, canvas.height / 2);
+    labelsA[1].save();
+    labelsA[1].rotate(Math.PI / 2);
+    labelsA[1].strokeText('X axis', height / 2,  -width + 35);
+    labelsA[1].fillText('X axis', height / 2,  -width + 35);
+    labelsA[1].restore();
+
+    labelsB[0].font = "20px 'Titillium Web',sans-serif";
+    labelsB[0].fillStyle = "#000";
+    labelsB[0].lineWidth = 3;
+    labelsB[0].strokeStyle = "rgba(255,255,255,0.9)";
+    labelsB[0].strokeText('Z axis', width / 2, height - 25);
+    labelsB[0].fillText('Z axis', width / 2, height - 25);
+
+    // labelsB[1].translate(canvas.width / 2, canvas.height / 2);
+    labelsB[1].save();
+    labelsB[1].rotate(Math.PI / 2);
+    labelsB[1].strokeText('X axis', height / 2, -20);
+    labelsB[1].fillText('X axis', height / 2, -20);
+    labelsB[1].restore();
 }
 
 function loop() {
