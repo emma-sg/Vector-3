@@ -172,7 +172,8 @@ module.exports = function(grunt) {
                     watchTask: true,
                     server: {
                         baseDir: "dist"
-                    }
+                    },
+                    ghostMode: false
                 }
             },
             host: {
@@ -183,7 +184,8 @@ module.exports = function(grunt) {
                     watchTask: false,
                     server: {
                         baseDir: "dist"
-                    }
+                    },
+                    ghostMode: false
                 }
             }
         },
