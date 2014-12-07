@@ -44,6 +44,7 @@ function Player(name) {
             this.chosen = true;
         }
     };
+    return this;
 }
 
 var ships = {
@@ -57,16 +58,19 @@ var ships = {
         cost: 48 + 8
     },
 };
-players = [
-    new Player("Yrrs, mrr nrrm rrs Borrrrb."),
-    new Player("fred"),
-    new Player("george"),
-];
+players = [];
 // players[0] = new Player("bob");
 // players[1] = new Player("fred");
 // players[2] = new Player("george");
 
 var panel1count = players.length;
+
+app.controller('PlayerInitController', function() {
+    this.addPlayer = function(name) {
+        players.push(new Player(name));
+    }
+    this.players;
+});
 
 app.controller('ShipStoreController', function() {
     this.ships = ships;
