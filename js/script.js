@@ -44,7 +44,6 @@ function Player(name) {
             this.chosen = true;
         }
     };
-    return this;
 }
 
 var ships = {
