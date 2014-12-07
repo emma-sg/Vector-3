@@ -67,10 +67,12 @@ var panel1count = players.length;
 
 app.controller('PlayerInitController', function() {
     this.playerName = "";
+    this.playerMessage = "Add player";
     this.addPlayer = function(name) {
         players.push(new Player(name));
         this.playerName = "";
-    }
+        this.playerMessage = "Add another player";
+    };
 });
 
 app.controller('ShipStoreController', function() {
