@@ -325,5 +325,8 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 // };
 
 function nextPage() {
-    $('section.current').removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
+    var currentPanel = $('section.current');
+    var nextPanel = $('section.current').nextAll().find('section').eq(0);
+    currentPanel.removeClass('current').addClass('panel-left');
+    nextPanel.removeClass('panel-right').addClass('current');
 }
