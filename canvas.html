@@ -2,34 +2,77 @@
 <html>
 
 <head>
-    <title></title>
+
+    <meta charset="UTF-8">
+
+    <title>CodePen - Pen</title>
+
+    <!-- <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" /> -->
     <style type="text/css">
     * {
-        margin: 0;
-        padding: 0;
+        margin: 0px;
+        padding: 0px;
     }
     canvas {
+        cursor: move;
         width: 50%;
         height: 100%;
-        box-shadow: 0 0 20px 0 #333;
+        /* margin-bottom: -3px; */
+        /* position:absolute; */
+        /* top:0; */
+        /* bottom:0; */
+        
+        box-shadow: -2px 0 20px -5px #000 inset;
     }
-    #xy {
-        float: left;
+    #canvas {
+        left: 0
     }
-    #xz {
-        float: right;
+    #canvas2 {
+        right: 0
+    }
+    button {
+        position: fixed;
+        top: 4%;
+        left: 4%;
+        box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.8);
+        font-size: 15px;
+        border-radius: 5000px;
+        padding: 1%;
+        border: 1px solid #444;
+        color: #444;
+        background: #fff;
+        transition: all 0.8s ease;
+        font-family: 'Raleway';
+        font-weight: 100;
+    }
+    button:active {
+        transition: all 0.08s ease;
+        background: #999;
+        color: #000;
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.8);
     }
     </style>
+
 </head>
 
 <body>
 
-    <section class="graphshown top p0grid animated slide panel-right ">
-        <canvas id="xy"></canvas>
-        <canvas id="xz"></canvas>
-    </section>
-    <script type="text/javascript" src="js/_bower.js"></script>
-    <script src="js/canvas.js"></script>
+    <html>
+
+    <head>
+        <title>canvas</title>
+    </head>
+
+    <body>
+        <canvas id="canvas"></canvas>
+        <canvas id="canvas2"></canvas>
+        <button onclick="resetPos()">Reset position</button>
+    </body>
+
+    </html>
+
+    <script src="js/index.js"></script>
+
 </body>
 
 </html>

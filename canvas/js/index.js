@@ -34,16 +34,16 @@ var limit_w = 3 * width / size;
 console.log(limit_h, limit_w);
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (var y = 0; y < limit_h; y++) {
-        for (i = 0; i < limit_w; i++) {
-            ctx.strokeStyle = "#000";
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for (var y = 0; y < limit_h; y++) {
+		for (i = 0; i < limit_w; i++) {
+			ctx.strokeStyle = "#000";
       ctx.lineWidth = 1;
-            ctx.fillStyle = "transparent";
-            ctx.strokeRect((i * size) + xOffset - width, (y * size) + yOffset - height, size - 0.5, size - 0.5 );
-            ctx.fillRect((i * size) + xOffset - width, (y * size) + yOffset - height, size - 0.5, size - 0.5 );
-        }
-    }
+			ctx.fillStyle = "transparent";
+			ctx.strokeRect((i * size) + xOffset - width, (y * size) + yOffset - height, size - 0.5, size - 0.5 );
+			ctx.fillRect((i * size) + xOffset - width, (y * size) + yOffset - height, size - 0.5, size - 0.5 );
+		}
+	}
   ctx.fillStyle="red";
   ctx.fillRect(4*size + 1 + xOffset, 4*size + 12 + yOffset, size-2, size-2);
   ctx.fillStyle="blue";
@@ -51,11 +51,11 @@ function draw() {
 }
 
 function loop() {
-    time++;
-    yOffset = yOffset % size ;
+	time++;
+	yOffset = yOffset % size ;
   xOffset = xOffset % size ;
-    draw();
-    requestAnimationFrame(loop);
+	draw();
+	requestAnimationFrame(loop);
   
 }
 
@@ -63,7 +63,7 @@ loop();
 
 
 document.addEventListener('mousedown', function (e) {
-    mouseDown = true;
+	mouseDown = true;
   mousePosOld.x = e.clientX;
   mousePosOld.y = e.clientY;
 });
@@ -82,7 +82,7 @@ document.addEventListener('mousemove', function (e) {
 });
 
 document.addEventListener('mouseup', function (e) {
-    mouseDown = false;
+	mouseDown = false;
 });
 
 function resetPos() {
