@@ -55,15 +55,19 @@
         <br/> -->
     </section>
     <section class="initships0 padded animated slide panel-right" ng-controller="ShipStoreController as shipstore" class="width:0">
-        <div ng-repeat="player in shipstore.players">
+        <div ng-repeat="player in shipstore.players" id="shipStore">
             <h4>{{ player.name }}</h4>
             <div id="sp0">{{ player.shipPoints }} Ship Points (SP) remaining.</div>
             <ul class="small-block-grid-2">
                 <li class="clearfix">
                     <button id="six-pod-select" onclick="purchase(6)">Purchase</button>
+                    <div data-alert class="alert-box success radius" ng-show="shipstore.notification">
+                        {{ shipstore.notification }}
+                        <a href="#" class="close">&times;</a>
+                    </div>
                     <h6 class="six-pod-cost">18 Ship Points
                     </h6>
-                    
+
                     <table class="six-pod">
                         <tbody>
                             <tr>
