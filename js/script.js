@@ -65,7 +65,7 @@ playerCount = 0;
 
 var panel1count = players.length;
 
-app.controller('PlayerInitController', function() {
+app.controller('PlayerInitController', ['$scope', function($scope) {
     this.playerName = "";
     this.playerMessage = "Add player";
     this.players = players;
@@ -75,6 +75,11 @@ app.controller('PlayerInitController', function() {
         this.playerName = "";
         this.playerMessage = "Add another player";
         players = this.players;
+    };
+}]).directive('shipSelect', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'ship-select.html'
     };
 });
 
@@ -114,18 +119,18 @@ var purchaseMessage = "";
 var buttonsClicked = 0; // Count the number of buttons in the first screen when this == 2
 
 function purchase(size) {
-    if(size === 6){
+    if (size === 6) {
         var maxCost = sixCost;
         var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
-        if(attemptBuyCost > sixCost){
+        if (attemptBuyCost > sixCost) {
             angular.element($('#shipStore')).scope().shipstore.notification = "You have selected items that cost too much!";
         } else {
             angular.element($('#shipStore')).scope().shipstore.notification = "Pods successfully purchased!";
         }
-    } else if(size === 9){
+    } else if (size === 9) {
         var maxCost = nineCost;
         var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
-        if(attemptBuyCost > sixCost){
+        if (attemptBuyCost > sixCost) {
             purchaseMessage = "You have selected items that cost too much!";
             $("#nine-pod-select").after(purchaseMessage);
         } else {
