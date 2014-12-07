@@ -119,10 +119,9 @@ function purchase(size) {
         var maxCost = sixCost;
         var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
         if(attemptBuyCost > sixCost){
-            purchaseMessage = "You have selected items that cost too much!";
-            $("#six-pod-select").after(purchaseMessage);
+            angular.element($('#shipStore')).scope().shipstore.notification = "You have selected items that cost too much!";
         } else {
-            purchaseMessage = "Pods successfully purchased!";
+            angular.element($('#shipStore')).scope().shipstore.notification = "Pods successfully purchased!";
         }
     } else if(size === 9){
         var maxCost = nineCost;
