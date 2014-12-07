@@ -1,68 +1,88 @@
 // (function() {
-    var app = angular.module('game', []);
+var app = angular.module('game', []);
 
-    /*
+/*
 
-    This is a remake of the Vector 3 game in the form of a web app, originally created by Greg Costikyan.
-    Like the original, This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, the terms of which maybe found here: https://creativecommons.org/licenses/by-nc/4.0/.
+This is a remake of the Vector 3 game in the form of a web app, originally created by Greg Costikyan.
+Like the original, This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, the terms of which maybe found here: https://creativecommons.org/licenses/by-nc/4.0/.
 
-    */
+*/
+
+function ctrl($scope) {
+    $scope.decrement = function(item) {
+        item.count -= 1;
+    }
+}
 
 
+var accelLevel = [0, 0]; // Tech levels
+var laserLevel = [0, 0];
 
-    var accelLevel = [0, 0]; // Tech levels
-    var laserLevel = [0, 0];
+var ShipPoints = [48, 48]; // Ship points
 
-    var ShipPoints = [48, 48]; // Ship points
+var vpoints = [0, '<marquee scrollamount="820">AAAAAARRRRRRGGGGGG!</marquee>']; // Victory points
 
-    var vpoints = [0, '<marquee scrollamount="820">AAAAAARRRRRRGGGGGG!</marquee>']; // Victory points
+var sixpodShip = 16;
+var ninepodShip = 32;
+var twelvepodShip = 48;
 
-    var sixpodShip = 16;
-    var ninepodShip = 32;
-    var twelvepodShip = 48;
 
-    function Player(name) {
-        this.name = name;
-        this.accelLevel = 0;
-        this.laserLevel = 0;
-        this.shipPoints = 48;
-        this.victoryPoints = 0;
-        this.ships = [];
-        this.setLevels= function(accel, las, element) {
-            this.accelLevel = accel;
-            this.laserLevel = las;
+function Player(name) {
+    this.name = name;
+    this.accelLevel = 0;
+    this.laserLevel = 0;
+    this.shipPoints = 48;
+    this.victoryPoints = 0;
+    this.ships = [];
+    this.chosen = false;
+    this.setLevels = function(accel, las, element) {
+        this.accelLevel = accel;
+        this.laserLevel = las;
+        if (this.chosen === false) {
+            panel1count--;
+            angular.element($('#panel1')).scope().techCtrl.showNext();
+            this.chosen = true;
+        }
+    };
+}
+
+var ships = {
+    sixpod: {
+        cost: 16 + 2
+    },
+    ninepod: {
+        cost: 32 + 4
+    },
+    twelvepod: {
+        cost: 48 + 8
+    },
+};
+players = [
+    new Player("Yrrs, mrr nrrm rrs Borrrrb."),
+    new Player("fred"),
+    new Player("george"),
+];
+// players[0] = new Player("bob");
+// players[1] = new Player("fred");
+// players[2] = new Player("george");
+
+var panel1count = players.length;
+
+app.controller('ShipStoreController', function() {
+    this.ships = ships;
+    this.players = players;
+});
+app.controller('TechPointsController', function() {
+    this.ships = ships;
+    this.players = players;
+    // this.count = panel1count;
+    this.shouldShowNext = false
+    this.showNext = function() {
+        if (panel1count === 0) {
+            this.shouldShowNext = true;
         };
     }
-
-    var ships = {
-        sixpod: {
-            cost: 16 + 2
-        },
-        ninepod: {
-            cost: 32 + 4
-        },
-        twelvepod: {
-            cost: 48 + 8
-        },
-    };
-    players = [
-        new Player("Yrrs, mrr nrrm rrs Borrrrb."),
-        new Player("fred"),
-        new Player("george"),
-    ];
-    // players[0] = new Player("bob");
-    // players[1] = new Player("fred");
-    // players[2] = new Player("george");
-
-    app.controller('ShipStoreController', function() {
-        this.ships = ships;
-        this.players = players;
-    });
-    app.controller('TechPointsController', function($scope) {
-        this.ships = ships;
-        this.players = players;
-        
-    });
+});
 // })();
 
 // Costs (not used at the moment...)
@@ -305,6 +325,5 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 // };
 
 function nextPage() {
-    $('.slide.current').removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
+    $('section.current').removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
 }
-
