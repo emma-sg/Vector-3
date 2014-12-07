@@ -59,6 +59,7 @@ var ships = {
     },
 };
 players = [];
+playerCount = 0;
 // players[0] = new Player("bob");
 // players[1] = new Player("fred");
 // players[2] = new Player("george");
@@ -68,10 +69,13 @@ var panel1count = players.length;
 app.controller('PlayerInitController', function() {
     this.playerName = "";
     this.playerMessage = "Add player";
+    this.players = players;
     this.addPlayer = function(pname) {
-        players[players.length] = new Player(pname);
+        this.players[playerCount] = (new Player(pname));
+        playerCount++;
         this.playerName = "";
         this.playerMessage = "Add another player";
+        players = this.players;
     };
 });
 
