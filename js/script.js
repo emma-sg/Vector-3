@@ -35,7 +35,7 @@ function Player(name) {
     this.victoryPoints = 0;
     this.ships = [];
     this.chosen = false;
-    this.setLevels = function(accel, las, element) {
+    this.setLevels = function(accel, las) {
         this.accelLevel = accel;
         this.laserLevel = las;
         if (this.chosen === false) {
@@ -87,9 +87,9 @@ app.controller('TechPointsController', function() {
     this.ships = ships;
     this.players = players;
     // this.count = panel1count;
-    this.shouldShowNext = false
+    this.shouldShowNext = false;
     this.showNext = function() {
-        if (panel1count === 0) {
+        if (panel1count <= 0) {
             this.shouldShowNext = true;
         };
     }
@@ -337,7 +337,7 @@ var buttonsClicked = 0; // Count the number of buttons in the first screen when 
 
 function nextPage() {
     var currentPanel = $('section.current');
-    var nextPanel = $('section.current');
+    var nextPanel = $('section.current').next();
     // currentPanel.removeClass('current').addClass('panel-left').nextAll().find('section').eq(0).removeClass('panel-right').addClass('current');
     currentPanel.removeClass('current').addClass('panel-left').next().removeClass('panel-right').addClass('current');
 }

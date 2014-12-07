@@ -54,8 +54,8 @@
         <button name="4">1 Acceleration, 3 Laser</button>
         <br/> -->
     </section>
-    <span ng-controller="ShipStoreController as shipstore" class="width:0">
-        <section class="initships0 padded animated slide panel-right" ng-repeat="player in shipstore.players">
+    <section class="initships0 padded animated slide panel-right" ng-controller="ShipStoreController as shipstore" class="width:0">
+        <div ng-repeat="player in shipstore.players">
             <h4>{{ player.name }}</h4>
             <div id="sp0">{{ player.shipPoints }} Ship Points (SP) remaining.</div>
             <ul class="small-block-grid-2">
@@ -161,10 +161,10 @@
                     </table>
                 </li>
             </ul>
-            <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!" onclick="nextPage()">Done</button>
-        </section>
-    </span>
-    <section class="initships1 padded animated slide panel-right ">
+        </div>
+        <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!" onclick="nextPage()">Done</button>
+    </section>
+    <!-- <section class="initships1 padded animated slide panel-right ">
         <h4>Player 1</h4>
         <div id="sp1"></div>
         <ul class="small-block-grid-2">
@@ -271,7 +271,7 @@
             </li>
         </ul>
         <button data-tooltip id="done1" class="disabled has-tip" title="You need to purchase something!">Done</button>
-    </section>
+    </section> -->
 
     <section class="graphshown top p0grid animated slide panel-right ">
         <h4>Player 0</h4>
