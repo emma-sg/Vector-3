@@ -1,19 +1,35 @@
-<script src="js/canvas.js"></script>
+<!DOCTYPE html>
+<html>
 
-<style type="text/css">
-	canvas {
-		width: 50%;
-		height: 100%;
-	}
-	#xy {
-		float: left;
-	}
-	#xz {
-		float: right;
-	}
-</style>
+<head>
+    <title></title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    canvas {
+        width: 50%;
+        height: 100%;
+        box-shadow: 0 0 20px 0 #333;
+    }
+    #xy {
+        float: left;
+    }
+    #xz {
+        float: right;
+    }
+    </style>
+</head>
 
-<section class="graphshown top p0grid animated slide panel-right ">
-    <canvas id="xy"></canvas>
-    <canvas id="xz"></canvas>
-</section>
+<body>
+
+    <section class="graphshown top p0grid animated slide panel-right ">
+        <canvas id="xy"></canvas>
+        <canvas id="xz"></canvas>
+    </section>
+    <script type="text/javascript" src="js/_bower.js"></script>
+    <script src="js/canvas.js"></script>
+</body>
+
+</html>
