@@ -46,7 +46,33 @@ function Player(name) {
     };
 }
 
-var ships = {
+function Ship(pods) {
+    this.size = pods.length;
+    this.pods = pods;
+    this.position = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
+    this.momentum = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
+    this.accel = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
+    this.alive = true;
+}
+
+function Pod(type) {
+    this.type = type;
+    this.alive = true;
+}
+
+var products = {
     sixpod: {
         cost: 16 + 2
     },
@@ -56,6 +82,15 @@ var ships = {
     twelvepod: {
         cost: 48 + 8
     },
+    cargo: {
+        cost: 1
+    },
+    cabin: {
+        cost: 2
+    },
+    laser: {
+        cost: 4
+    }
 };
 players = [];
 playerCount = 0;
@@ -83,10 +118,25 @@ app.controller('PlayerInitController', ['$scope', function($scope) {
     };
 });
 
-app.controller('ShipStoreController', function() {
+app.controller('ShipStoreController', ["$scope", function($scope) {
     this.ships = ships;
     this.players = players;
-});
+    this.products = products;
+    this.sixCost = 18;
+    this.nineCost = 36;
+    this.recalculateCosts = function() {
+        // $scope.
+    };
+    this.buyShip = function(player, pod1, pod2, pod3, pod4) {
+        player.ships.push(new Ship([
+            new Pod(pod1),
+            new Pod(pod2),
+            new Pod(pod3),
+            new Pod(pod4),
+            ]));
+        players[player].ships.push(player.ships);
+    };
+}]);
 app.controller('TechPointsController', function() {
     this.ships = ships;
     this.players = players;
@@ -124,6 +174,7 @@ function purchase(size) {
         var attemptBuyCost = parseInt($("table select").eq(0).val()) + parseInt($("table select").eq(1).val());
         if (attemptBuyCost > sixCost) {
             angular.element($('#shipStore')).scope().shipstore.notification = "You have selected items that cost too much!";
+
         } else {
             angular.element($('#shipStore')).scope().shipstore.notification = "Pods successfully purchased!";
         }

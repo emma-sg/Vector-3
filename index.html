@@ -60,22 +60,22 @@
             <div id="sp0">{{ player.shipPoints }} Ship Points (SP) remaining.</div>
             <ul class="small-block-grid-2">
                 <li class="clearfix">
-                    <button id="six-pod-select" onclick="purchase(6)">Purchase</button>
+                    <button id="six-pod-select" onclick="purchase(6)" ng-click="shipstore.buyShip(player, pod1, pod2)">Purchase</button>
                     <div data-alert class="alert-box success radius" ng-show="shipstore.notification">
                         {{ shipstore.notification }}
                         <a href="#" class="close">&times;</a>
                     </div>
-                    <h6 class="six-pod-cost">18 Ship Points
+                    <h6 class="six-pod-cost">{{}}
                     </h6>
 
                     <table class="six-pod">
                         <tbody>
                             <tr>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod1">
                                 </td>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod2">
                                 </td>
                             </tr>
                             <tr>
@@ -90,29 +90,29 @@
                     </table>
                 </li>
                 <li class="clearfix">
-                    <button id="nine-pod-select" onclick="purchase(9)">Purchase</button>
+                    <button id="nine-pod-select" onclick="purchase(9)" ng-click="shipstore.buyShip(pod1, pod2, pod3, pod4)">Purchase</button>
                     <h6 class="nine-pod-cost">36 Ship Points
                     </h6>
                     <table class="nine-pod text-center">
                         <tbody>
                             <tr>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod1">
                                 </td>
                                 <td>
                                     Cabin
                                 </td>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod2">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod3">
                                 </td>
                                 <td>Cabin</td>
                                 <td>
-                                    <ship-select></ship-select>
+                                    <ship-select></ship-select ng-model="pod4">
                                 </td>
                             </tr>
                             <tr>
