@@ -104,6 +104,7 @@ select {
     &.top {
         // height: 100px;
         bottom: 0;
+        perspective: 300px;
     }
 }
 button.selected {
@@ -124,11 +125,15 @@ canvas {
     left: 0;
     float: left;
     box-shadow: -2px -6px 0 0 #000 inset;
+    transform: rotateY(20deg);
+    transform-origin: center left;
 }
 #canvas2 {
     right: 0;
     float: right;
     box-shadow: 2px -6px 0 0 #000 inset;
+    transform: rotateY(-20deg);
+    transform-origin: center right;
 }
 .graphshown button {
     position: absolute;
