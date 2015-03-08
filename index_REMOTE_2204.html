@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="js/_bower.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="js/script.js"></script> -->
+    <meta charset="utf-8">
+    <title>V3</title>
+    <link rel="stylesheet" href="css/_bower.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- <script src="js/vendor/modernizr.js"></script> -->
+    <link href='//fonts.googleapis.com/css?family=Play|Titillium+Web:300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Play|Titillium+Web:300,300italic' rel='stylesheet' type='text/css'>
+    <!-- <script type="text/javascript" charset="utf-8" src="MathBox.js-master/vendor/domready.js"></script> -->
+    <!-- <script type="text/javascript" charset="utf-8" src="MathBox.js-master/build/MathBox-bundle.js"></script> -->
+    <!-- <link href="MathBox.js-master/examples/base.css" rel="stylesheet" type="text/css" media="screen"> -->
+</head>
+
+<body ng-app="game">
+    <button id="start" style="display:none;">Start game</button>
+    <section class="padded centered animated slide current" ng-controller="PlayerInitController as playerInit">
+        <h1>Vector <span style="color:#4CAFCF">3</span></h1>
+        <p>Adaptation the <a href="https://web.archive.org/web/20131115042508/http://playthisthing.com/vector-3">original game</a> by Greg Costikyan.</p>
+        <p>Coded by <a href="https://github.com/EdenSG">@EdenSG</a>, <a href="https://github.com/TheMacMini09">@TheMacMini09</a> and <a href="https://github.com/1sadtrombone">@1sadtrombone</a>.</p>
+        <br/>
+        <form ng-submit="playerInit.addPlayer(playerInit.playerName)" name="playerAdd">
+            <input placeholder="Player name" ng-model="playerInit.playerName" name="name" class="button disabled secondary" />
+            <button ng-class="{ disabled: playerInit.playerAdd.$error }">{{ playerInit.playerMessage }}</button>
+        </form>
+        <button class="margined" onclick="nextPage()" ng-show="playerInit.playerMessage == 'Add another player'">Next</button>
+    </section>
+    <section class="inittech padded centered animated slide panel-right" ng-controller="TechPointsController as techCtrl" id="panel1">
+
+        <div ng-repeat="player in techCtrl.players">
+            <h5>{{ player.name }}</h5>
+            <form class="button-group round">
+                <button name="2" ng-class="{ 'selected': player.accelLevel == 2 }" ng-click="player.setLevels(2,2)" ng-model="a">2 Acceleration, 2 Laser</button>
+
+
+                <button name="2" ng-class="{ 'selected': player.accelLevel == 1 }" ng-click="player.setLevels(1,3)" ng-model="b">1 Acceleration, 3 Laser</button>
+            </form>
+            <input style="display:none" type="radio" name="1" ng-value="1" ng-model="player.accelLevel" />
+            <input style="display:none" type="radio" name="1" ng-value="2" ng-model="player.accelLevel" />
+            <!-- <p>{{ player.chosen }}</p> -->
+        </div>
+        <p>{{techCtrl.players.count}}</p>
+        <p>{{techCtrl.count}}</p>
+        <button class="margined" onclick="nextPage()" ng-show="techCtrl.shouldShowNext">Next</button>
+        <br/>
+        <!--         <h5>Player 1</h5>
+        <button name="3">2 Acceleration, 2 Laser</button>
+        <button name="4">1 Acceleration, 3 Laser</button>
+        <br/> -->
+    </section>
+    <section class="initships0 padded animated slide panel-right" ng-controller="ShipStoreController as shipstore" class="width:0">
+        <div ng-repeat="player in shipstore.players" id="shipStore">
+            <h4>{{ player.name }}</h4>
+            <div id="sp0">{{ player.shipPoints }} Ship Points (SP) remaining.</div>
+            <ul class="small-block-grid-2">
+                <li class="clearfix">
+                    <button id="six-pod-select" onclick="purchase(6)" ng-click="shipstore.buyShip(player, pod1, pod2)">Purchase</button>
+                    <div data-alert class="alert-box success radius" ng-show="shipstore.notification">
+                        {{ shipstore.notification }}
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                    <h6 class="six-pod-cost">{{}}
+                    </h6>
+
+                    <table class="six-pod">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod1">
+                                </td>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cabin</td>
+                                <td>Cabin</td>
+                            </tr>
+                            <tr>
+                                <td>Cabin</td>
+                                <td>Cabin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li class="clearfix">
+                    <button id="nine-pod-select" onclick="purchase(9)" ng-click="shipstore.buyShip(pod1, pod2, pod3, pod4)">Purchase</button>
+                    <h6 class="nine-pod-cost">36 Ship Points
+                    </h6>
+                    <table class="nine-pod text-center">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod1">
+                                </td>
+                                <td>
+                                    Cabin
+                                </td>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod3">
+                                </td>
+                                <td>Cabin</td>
+                                <td>
+                                    <ship-select></ship-select ng-model="pod4">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cabin</td>
+                                <td>Cabin</td>
+                                <td>Cabin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <button data-tooltip id="done0" class="disabled has-tip" title="You need to purchase something!" onclick="nextPage()">Done</button>
+    </section>
+
+    <section class="graphshown top p0grid animated slide panel-right ">
+        <canvas id="canvas"></canvas>
+        <canvas id="canvas2"></canvas>
+        <button onclick="resetPos()">Reset position</button>
+    </section>
+
+
+
+    <button id="end" style="display:none;">End game</button>
+
+
+    <script type="text/javascript" src="js/_bower.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
+</body>
+
+</html>

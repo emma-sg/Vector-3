@@ -1,0 +1,41 @@
+   *{
+       margin:0px;
+       padding:0px;
+      }
+canvas {
+  cursor: move;
+  width:50%;
+  height:100%;
+  /* margin-bottom: -3px; */
+  /* position:absolute; */
+  /* top:0; */
+  /* bottom:0; */
+  box-shadow:-2px 0 20px -5px #000 inset;
+}
+#canvas {
+  left:0
+}
+#canvas2 {
+  right:0
+}
+button {
+  position: fixed;
+  top:4%;
+  left:4%;
+  box-shadow: 0 0 0 12px rgba(255,255,255,0.8);
+  font-size:15px;
+  border-radius:5000px;
+  padding: 1%;
+  border:1px solid #444;
+  color:#444;
+  background:#fff;
+  transition: all 0.8s ease;
+  font-family: 'Raleway';
+  font-weight:100;
+}
+button:active {
+  transition: all 0.08s ease;
+  background:#999;
+  color:#000;
+  box-shadow: 0 0 0 6px rgba(255,255,255,0.8);
+}
